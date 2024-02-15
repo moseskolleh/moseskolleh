@@ -2,8 +2,7 @@
 
 #### 🌍 Based in Wageningen, Netherlands
 #### 📫 How to reach me: [LinkedIn](https://www.linkedin.com/in/moseskollehsesay)
-#### <img width="72" alt="image" src="https://github.com/moseskolleh/moseskolleh/assets/33796303/f6b9bdfc-42e1-403f-9ea3-87f3147e30aa">
- [CV](https://drive.google.com/file/d/19isdOGl7H_wUdJoOwcUo9GqeoWkU6P3c/view?usp=drive_link)
+#### My [CV](https://drive.google.com/file/d/19isdOGl7H_wUdJoOwcUo9GqeoWkU6P3c/view?usp=drive_link)
 
 
 ---
