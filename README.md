@@ -7,8 +7,7 @@
 
 ---
 
-### About Me
-🔍 About Me
+### About Me 🔍 
 I am a data whisperer, environmental crusader, and a bit of a Python charmer. I've journeyed through the realms of environmental science and industrial engineering, only to find my true calling in the art of data analytics. Imagine a Sherlock Holmes, but instead of solving mysteries, I unravel the secrets hidden in data to champion sustainability and combat climate change. My toolbox? A medley of Python, SQL, and a flair for visual storytelling with Tableau and Power BI. When I'm not busy saving the world one dataset at a time, you might find me geeking out over the latest in GIS technologies or brushing up on my Dutch – because why not? Here's to making the planet greener, one data-driven decision at a time!
 
 ---
