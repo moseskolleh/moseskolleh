@@ -6,7 +6,7 @@
 
 ## About Me 🔍
 
-I'm a Water Resources & Climate Change Professional with a passion for data-driven sustainability solutions. With a background in environmental sciences and industrial engineering, I specialize in analyzing complex environmental systems and developing innovative solutions to address climate change and water resource management challenges.
+I am a Water Resources & Climate Change Professional with a passion for data-driven sustainability solutions. With a background in environmental sciences and industrial engineering, I specialise in analyzing complex environmental systems and developing innovative solutions to address climate change and water resource management challenges.
 
 - 🌊 Expertise in water resources management and climate resilience
 - 📊 Proficient in data analysis, environmental modeling, and GIS
