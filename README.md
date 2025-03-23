@@ -1,4 +1,5 @@
-![Static Badge](https://img.shields.io/badge/Python-Proficient-brightgreen)
+![Static Badge](https://img.shields.io/badge/Python-Proficient-brightgreen)   ![Static Badge](https://img.shields.io/badge/Data%20Analysis-Proficient-orange)
+
 
 # 👋 Hi there, I'm Moses Kolleh Sesay!
 
