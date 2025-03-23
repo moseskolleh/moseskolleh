@@ -1,3 +1,5 @@
+![Static Badge](https://img.shields.io/badge/Python-Proficient-brightgreen)
+
 # 👋 Hi there, I'm Moses Kolleh Sesay!
 
 🌍 Based in Wageningen, Netherlands  
