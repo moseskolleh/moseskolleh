@@ -1,6 +1,6 @@
 ![Static Badge](https://img.shields.io/badge/Python-Proficient-brightgreen)   ![Static Badge](https://img.shields.io/badge/Data%20Analysis-Proficient-orange)  ![Static Badge](https://img.shields.io/badge/Climate%20Change-Enthusiast-blue)   ![Static Badge](https://img.shields.io/badge/GIS-Intermediate-yellow)   ![Static Badge](https://img.shields.io/badge/SQL-Proficient-blueviolet)   ![Static Badge](https://img.shields.io/badge/R-Proficient-purple)
 
-![Banner](https://github.com/moseskolleh/assets/blob/main/ChatGPT%20Image%20Mar%2031%2C%202025%2C%2012_39_45%20AM.png)
+![Banner](https://github.com/moseskolleh/assets/blob/main/Banner.png)
 
 
 
