@@ -6,7 +6,7 @@
 
 
 
-# 👋 Hi there, I'm Moses Kolleh Sesay!
+# 👋 Hi there, I am Moses Kolleh Sesay!
 
 🌍 Based in Wageningen, Netherlands  
 📧 [moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com)   
