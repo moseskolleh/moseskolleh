@@ -37,8 +37,8 @@ I am a Water Resources & Climate Change Professional with a passion for data-dri
 
 ## Projects 🚀
 
-[I'll be adding detailed project descriptions and links to repositories soon!]
+[I will be adding detailed project descriptions and links to repositories soon!]
 
 ---
 
-💡 I'm always open to collaborating on projects related to water resources, climate change, and environmental data analysis. Feel free to reach out!
+💡 I am always open to collaborating on projects related to water resources, climate change, and environmental data analysis. Feel free to reach out!
