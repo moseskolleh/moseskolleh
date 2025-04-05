@@ -41,4 +41,4 @@ I am a Water Resources & Climate Change Professional with a passion for data-dri
 
 ---
 
-💡 I am always open to collaborating on projects related to water resources, climate change, and environmental data analysis. Feel free to reach out!
+💡 I am always open to collaborating on projects related to sustainability, climate change, and environmental data analysis. Feel free to reach out!
