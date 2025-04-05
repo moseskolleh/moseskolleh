@@ -21,9 +21,9 @@ I am a Water Resources & Climate Change Professional with a passion for data-dri
 - 🌿 Committed to driving positive environmental impact through data-driven decisions
 - 🤝 Experienced in stakeholder engagement and project management
 
-## Skills 🛠️
+## Technical Skills 🛠️
 
-- **Data Analysis:** Python (Pandas, NumPy, Matplotlib, Scikit-learn, Geopandas), SQL (PostgreSQL, MySQL)
+- **Data Analysis:** Python (Pandas, NumPy, Matplotlib, Scikit-learn, Geopandas), SQL (PostgreSQL, MySQL), R
 - **Data Visualization:** Tableau, Power BI
 - **GIS:** QGIS, ArcGIS, Felt, Google Earth Engine
 - **Other Tools:** Microsoft Excel, Google Sheets
