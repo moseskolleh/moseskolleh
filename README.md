@@ -9,7 +9,7 @@
 
 # 👋 Hi there, I am Moses Kolleh Sesay!
 
-🌍 Based in Arnhem, Netherlands  
+🌍 Based in Amsterdam, The Netherlands  
 📧 [moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com)   
 🔗 [LinkedIn](http://www.linkedin.com/in/moseskollehsesay)
 
