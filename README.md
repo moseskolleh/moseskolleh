@@ -19,12 +19,11 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/surface-conditions-dark.svg">
-  <img src="assets/surface-conditions-light.svg" alt="Surface conditions 2026-07 (archival): Rhine discharge at Lobith 1,860 m3/s, 30-day sounding; atmospheric CO2 426.8 ppm, NOAA global trend." width="100%">
+  <img src="assets/surface-conditions-light.svg" alt="Surface conditions 2026-07-06: Rhine discharge at Lobith 1,860 m3/s, 30-day sounding; atmospheric CO2 427.8 ppm, NOAA global trend." width="100%">
 </picture>
 
 > *Two numbers I watch the way other people watch the weather: how much water the Rhine is carrying as it enters the Netherlands (measured at Lobith, the gauge the whole country checks first), and how much CO₂ is in the air. A script logs them here every morning — and because a hydrologist never trusts an undated reading, the panel always shows the date it was taken. [How this works →](scripts/update_surface_conditions.py)*
 
-<sub>Day-one panel shows an archival estimate; the first automated sounding replaces it.</sub>
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-1-dark.svg">
