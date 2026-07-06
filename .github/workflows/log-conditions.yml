@@ -1,4 +1,4 @@
-# « De dagelijkse peiling » — refresh the surface-conditions panel daily.
+# Daily readings — refresh the Rhine + CO2 panel every morning.
 # The updater is fail-soft: if a data source is down it exits 0 without
 # writing, the previous dated reading stands, and no commit is made.
 
@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  peiling:
+  daily-reading:
     if: github.repository == 'moseskolleh/moseskolleh'
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add assets README.md
-            git commit -m "peiling: $(date -u +%F) [skip ci]"
+            git commit -m "daily reading: $(date -u +%F) [skip ci]"
             git pull --rebase --autostash origin "$GITHUB_REF_NAME"
             git push
           else
