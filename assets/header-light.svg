@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 260" width="1200" height="260" role="img" aria-label="Borehole log MKS-01 — Moses Kolleh Sesay. Site: Arnhem, the Netherlands. Logged across Freetown, Changsha, Wageningen and Arnhem. Purpose: water, climate, data.">
+<title>Borehole log MKS-01 — Moses Kolleh Sesay. Site: Arnhem, the Netherlands. Logged across Freetown, Changsha, Wageningen and Arnhem. Purpose: water, climate, data.</title>
+<rect x="0" y="0" width="1200" height="260" fill="#FAF6EF"/>
+<rect x="6.5" y="6.5" width="1187" height="247" fill="none" stroke="#22303A" stroke-width="1.5"/>
+<rect x="12.5" y="12.5" width="1175" height="235" fill="none" stroke="#D8D2C4" stroke-width="1"/>
+<text x="48" y="78" font-family="Courier New, Courier, monospace" font-size="28" fill="#C4552D" font-weight="bold" text-anchor="start" letter-spacing="5">BOREHOLE LOG · MKS-01</text>
+<text x="48" y="142" font-family="Courier New, Courier, monospace" font-size="56" fill="#22303A" font-weight="bold" text-anchor="start" textLength="640" lengthAdjust="spacingAndGlyphs">MOSES KOLLEH SESAY</text>
+<text x="48" y="178" font-family="Courier New, Courier, monospace" font-size="19" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="2">HYDROGEOLOGIST → CLIMATE-TECH BUILDER</text>
+<line x1="48" y1="198" x2="740" y2="198" stroke="#D8D2C4" stroke-width="1"/>
+<text x="48" y="221" font-family="Courier New, Courier, monospace" font-size="17" fill="#68757F" font-weight="normal" text-anchor="start">SITE: ARNHEM NL · 51.98° N 5.91° E · NEDERRIJN KM 884</text>
+<text x="48" y="243" font-family="Courier New, Courier, monospace" font-size="17" fill="#68757F" font-weight="normal" text-anchor="start">LOGGED ACROSS: FREETOWN → CHANGSHA → WAGENINGEN → ARNHEM</text>
+<g stroke="#22303A" stroke-width="2" fill="none" stroke-linecap="round">
+<path d="M905 190 L965 58 L1025 190"/>
+<path d="M921 155 L1009 155 M934 126 L996 126 M947 97 L983 97"/>
+<path d="M921 155 L996 126 M1009 155 L934 126"/>
+<rect x="953" y="46" width="24" height="14" stroke="#22303A"/>
+<path d="M965 60 L965 190"/>
+<path d="M782 190 L1148 190" stroke-width="2.5"/>
+</g>
+<path d="M958 190 L972 190 L965 206 Z" fill="#22303A"/>
+<g>
+<path d="M800 216 q 22 -7 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0" fill="none" stroke="#1272B6" stroke-width="2" opacity="0.9"/>
+<path d="M800 228 q 22 -7 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0" fill="none" stroke="#1272B6" stroke-width="2" opacity="0.65"/>
+<path d="M800 240 q 22 -7 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0" fill="none" stroke="#1272B6" stroke-width="2" opacity="0.4"/>
+<animateTransform attributeName="transform" type="translate" values="0 0; -8 0; 0 0; 8 0; 0 0" dur="8s" repeatCount="indefinite"/>
+</g>
+<text x="1176" y="34" font-family="Courier New, Courier, monospace" font-size="13" fill="#68757F" font-weight="normal" text-anchor="end" letter-spacing="1.5">FIG. 1 — MASTHEAD · SHEET 1 OF 1</text>
+</svg>
