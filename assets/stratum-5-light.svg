@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 110" width="1200" height="110" role="img" aria-label="Stratum 5 divider: BEDROCK — SIERRA LEONE, depth 12 m +.">
+<title>Stratum 5 divider: BEDROCK — SIERRA LEONE, depth 12 m +.</title>
+<defs><pattern id="tx5l" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 14 L14 0 M-3 3 L3 -3 M11 17 L17 11" stroke="#C4552D" stroke-width="1"/><path d="M0 0 L14 14 M11 -3 L17 3 M-3 11 L3 17" stroke="#C4552D" stroke-width="0.7" opacity="0.6"/></pattern></defs>
+<rect x="0" y="0" width="1200" height="110" fill="#FAF6EF"/>
+<rect x="6.5" y="6.5" width="1187" height="97" fill="none" stroke="#22303A" stroke-width="1.5"/>
+<rect x="12.5" y="12.5" width="1175" height="85" fill="none" stroke="#D8D2C4" stroke-width="1"/>
+<rect x="90" y="13" width="1097" height="84" fill="url(#tx5l)" opacity="0.5"/>
+<line x1="90" y1="13" x2="90" y2="97" stroke="#22303A" stroke-width="1.5"/>
+<line x1="78" y1="13.0" x2="90" y2="13.0" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="21.4" x2="90" y2="21.4" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="29.8" x2="90" y2="29.8" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="38.2" x2="90" y2="38.2" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="46.6" x2="90" y2="46.6" stroke="#22303A" stroke-width="1"/>
+<line x1="78" y1="55.0" x2="90" y2="55.0" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="63.4" x2="90" y2="63.4" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="71.8" x2="90" y2="71.8" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="80.2" x2="90" y2="80.2" stroke="#22303A" stroke-width="1"/>
+<line x1="83" y1="88.6" x2="90" y2="88.6" stroke="#22303A" stroke-width="1"/>
+<line x1="78" y1="97.0" x2="90" y2="97.0" stroke="#22303A" stroke-width="1"/>
+<text x="24" y="34" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1">DEPTH</text>
+<text x="24" y="52" font-family="Courier New, Courier, monospace" font-size="13" fill="#22303A" font-weight="bold" text-anchor="start">12 m +</text>
+<text x="24" y="92" font-family="Courier New, Courier, monospace" font-size="13" fill="#22303A" font-weight="bold" text-anchor="start"></text>
+<rect x="118" y="26" width="470" height="58" fill="#F3EDE0" stroke="#D8D2C4" stroke-width="1"/>
+<text x="134" y="58" font-family="Courier New, Courier, monospace" font-size="32" fill="#22303A" font-weight="bold" text-anchor="start">BEDROCK — SIERRA LEONE</text>
+<text x="134" y="76" font-family="Courier New, Courier, monospace" font-size="14" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1.5">CRYSTALLINE BASEMENT · REFUSAL</text>
+<text x="1172" y="62" font-family="Courier New, Courier, monospace" font-size="15" fill="#C4552D" font-weight="bold" text-anchor="end" letter-spacing="2">END OF HOLE</text>
+</svg>
