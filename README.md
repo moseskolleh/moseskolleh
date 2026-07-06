@@ -1,11 +1,11 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
-  <img src="assets/header-light.svg" alt="Borehole log MKS-01 — Moses Kolleh Sesay. Site: Arnhem, the Netherlands, 51.98°N 5.91°E, Nederrijn km 884. Logged across Freetown, Changsha, Wageningen and Arnhem. Purpose: water, climate, data." width="100%">
+  <img src="assets/header-light.svg" alt="Borehole log MKS-01 — Moses Kolleh Sesay. Site: Amsterdam, the Netherlands, 52.37°N 4.90°E, home of the NAP sea-level datum. Logged across Freetown, Changsha, Wageningen and Amsterdam. Purpose: water, climate, data." width="100%">
 </picture>
 
 | | |
 |---|---|
-| **LOGGED BY** | Moses Kolleh Sesay — hydrogeologist → climate-tech builder · Arnhem, NL |
+| **LOGGED BY** | Moses Kolleh Sesay — hydrogeologist → climate-tech builder · Amsterdam, NL |
 | **CONTACT** | [moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com) · [LinkedIn](https://www.linkedin.com/in/moseskollehsesay) · [@MosesKolleh](https://x.com/MosesKolleh) · [Portfolio](https://moseskolleh.github.io/sustaintheworld/) |
 | **KEY SAMPLES** | [promptcoach](https://github.com/moseskolleh/promptcoach) · [GAIA-Framework](https://github.com/moseskolleh/GAIA-Framework-) · [Maji](https://github.com/moseskolleh/Maji) |
 | **METHOD** | Python · SQL · R · GIS (QGIS, ArcGIS, Google Earth Engine) · TypeScript |
@@ -15,14 +15,14 @@
 
 `● recording (active)` · `◍ field-validated` · `◌ prototype` · `▣ archived survey`
 
-## Surface conditions — de dagelijkse peiling
+## Daily readings — the Rhine and the atmosphere
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/surface-conditions-dark.svg">
   <img src="assets/surface-conditions-light.svg" alt="Surface conditions 2026-07 (archival): Rhine discharge at Lobith 1,860 m3/s, 30-day sounding; atmospheric CO2 426.8 ppm, NOAA global trend." width="100%">
 </picture>
 
-> *The Rhine enters the Netherlands at Lobith, twenty kilometres upstream of my desk. Peiling taken daily from Rijkswaterstaat and NOAA — a hydrologist never trusts an undated reading, so this one carries its date. [How this works →](scripts/update_surface_conditions.py)*
+> *Two numbers I watch the way other people watch the weather: how much water the Rhine is carrying as it enters the Netherlands (measured at Lobith, the gauge the whole country checks first), and how much CO₂ is in the air. A script logs them here every morning — and because a hydrologist never trusts an undated reading, the panel always shows the date it was taken. [How this works →](scripts/update_surface_conditions.py)*
 
 <sub>Day-one panel shows an archival estimate; the first automated sounding replaces it.</sub>
 
@@ -96,7 +96,7 @@ An aquifer stores what the surface forgets. Mine was recharged in Freetown, Chan
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/drill-path-dark.svg">
-  <img src="assets/drill-path-light.svg" alt="Recharge path, source to delta: from the Bintumani massif in Sierra Leone at 1,945 metres, through Changsha, China, down to the Nederrijn floodplain in the Netherlands near sea level." width="100%">
+  <img src="assets/drill-path-light.svg" alt="Recharge path, source to delta: from the Bintumani massif in Sierra Leone at 1,945 metres, through Changsha, China, down to Amsterdam at sea level — zero metres on the NAP datum that carries the city's name." width="100%">
 </picture>
 
 <picture>

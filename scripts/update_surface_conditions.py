@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""De dagelijkse peiling — refresh the surface-conditions panel.
+"""Daily readings — refresh the surface-conditions panel.
 
 Fetches two open datasets and re-renders assets/surface-conditions-*.svg:
 
@@ -39,7 +39,7 @@ NOAA_CO2_TREND = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_trend_gl.csv"
 NOAA_CO2_MONTHLY = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_gl.csv"
 
 TIMEOUT = 30
-UA = {"User-Agent": "moseskolleh-profile-peiling/1.0 (github.com/moseskolleh)"}
+UA = {"User-Agent": "moseskolleh-profile-readings/1.0 (github.com/moseskolleh)"}
 
 
 def post_json(url, payload):
@@ -153,7 +153,7 @@ def sync_readme(data):
     try:
         import re
         md = README.read_text(encoding="utf-8")
-        alt = (f"Surface conditions {data['peiling_date']}: Rhine discharge at "
+        alt = (f"Surface conditions {data['reading_date']}: Rhine discharge at "
                f"Lobith {data['rhine']['latest']:,.0f} m3/s, 30-day sounding; "
                f"atmospheric CO2 {data['co2']['latest']:.1f} ppm, NOAA global "
                f"trend.")
@@ -164,14 +164,14 @@ def sync_readme(data):
         md = md.replace(ARCHIVAL_CAVEAT, "\n")
         README.write_text(md, encoding="utf-8")
     except Exception as exc:  # noqa: BLE001 — cosmetic sync only
-        print(f"peiling: README sync skipped ({exc})")
+        print(f"reading: README sync skipped ({exc})")
 
 
 def main():
     try:
         prior = json.loads(SOUNDINGS.read_text(encoding="utf-8"))
     except Exception as exc:  # noqa: BLE001 — fail-soft by contract
-        print(f"peiling: cannot read prior soundings ({exc}); leaving log as-is")
+        print(f"reading: cannot read prior soundings ({exc}); leaving log as-is")
         return 0
 
     fresh = {"rhine": None, "co2": None}
@@ -179,10 +179,10 @@ def main():
         try:
             fresh[key] = fetch()
         except Exception as exc:  # noqa: BLE001 — fail-soft by contract
-            print(f"peiling: {key} source unavailable ({exc}); carrying prior value")
+            print(f"reading: {key} source unavailable ({exc}); carrying prior value")
 
     if fresh["rhine"] is None and fresh["co2"] is None:
-        print("peiling: both sources down; prior dated reading stands")
+        print("reading: both sources down; prior dated reading stands")
         return 0
 
     today = date.today().isoformat()
@@ -198,14 +198,14 @@ def main():
             data["co2"] = {"latest": latest, "monthly": monthly,
                            "source": "NOAA GML global trend", "sounded": today}
         data["archival"] = False
-        data["peiling_date"] = today
+        data["reading_date"] = today
 
         # Render FIRST — if the merged data can't produce valid SVGs
         # (e.g. a hand-mangled prior file), nothing is written at all.
         svgs = {theme: render_assets.render_surface(p, theme, data)
                 for theme, p in render_assets.PALETTES.items()}
     except Exception as exc:  # noqa: BLE001 — fail-soft by contract
-        print(f"peiling: could not compose reading ({exc}); prior log stands")
+        print(f"reading: could not compose reading ({exc}); prior log stands")
         return 0
 
     SOUNDINGS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
@@ -213,7 +213,7 @@ def main():
         (ROOT / "assets" / f"surface-conditions-{theme}.svg").write_text(
             svg, encoding="utf-8")
     sync_readme(data)
-    print(f"peiling: logged {data['peiling_date']}")
+    print(f"reading: logged {data['reading_date']}")
     return 0
 
 

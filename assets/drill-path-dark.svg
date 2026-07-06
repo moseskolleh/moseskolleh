@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="Recharge path, source to delta: Freetown, Sierra Leone (Bintumani massif, 1945 m) to Changsha, China, to Wageningen and Arnhem, the Netherlands (Nederrijn floodplain, around NAP 0 m).">
-<title>Recharge path, source to delta: Freetown, Sierra Leone (Bintumani massif, 1945 m) to Changsha, China, to Wageningen and Arnhem, the Netherlands (Nederrijn floodplain, around NAP 0 m).</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" width="1200" height="420" role="img" aria-label="Recharge path, source to delta: Freetown, Sierra Leone (Bintumani massif, 1945 m) to Changsha, China, to Wageningen and Amsterdam, the Netherlands — at sea level, on the datum named after the city (Normaal Amsterdams Peil).">
+<title>Recharge path, source to delta: Freetown, Sierra Leone (Bintumani massif, 1945 m) to Changsha, China, to Wageningen and Amsterdam, the Netherlands — at sea level, on the datum named after the city (Normaal Amsterdams Peil).</title>
 <rect x="0" y="0" width="1200" height="420" fill="#0D141C"/>
 <rect x="6.5" y="6.5" width="1187" height="407" fill="none" stroke="#D7E3E0" stroke-width="1.5"/>
 <rect x="12.5" y="12.5" width="1175" height="395" fill="none" stroke="#2A3A47" stroke-width="1"/>
@@ -14,7 +14,7 @@
 <line x1="80" y1="340" x2="1160" y2="340" stroke="#52C7EA" stroke-width="1.6" stroke-dasharray="10 5"/>
 <text x="1160" y="358" font-family="Courier New, Courier, monospace" font-size="13" fill="#52C7EA" font-weight="normal" text-anchor="end" letter-spacing="1.5">NAP · SEA LEVEL</text>
 <text x="72" y="344" font-family="Courier New, Courier, monospace" font-size="12" fill="#748896" font-weight="normal" text-anchor="end">0 m</text>
-<path d="M190 97 C 290 210, 470 300, 620 334 S 900 338, 1030 338" fill="none" stroke="#D7E3E0" stroke-width="2" stroke-dasharray="8 7"/>
+<path d="M190 97 C 290 210, 470 300, 620 334 S 900 340, 1030 340" fill="none" stroke="#D7E3E0" stroke-width="2" stroke-dasharray="8 7"/>
 <circle cx="190" cy="97" r="8" fill="#E58B5B"/>
 <text x="212" y="82.875" font-family="Courier New, Courier, monospace" font-size="20" fill="#D7E3E0" font-weight="bold" text-anchor="start">SOURCE — BINTUMANI MASSIF · 1 945 m</text>
 <text x="212" y="106.875" font-family="Courier New, Courier, monospace" font-size="15" fill="#E58B5B" font-weight="normal" text-anchor="start" letter-spacing="1">SIERRA LEONE · FREETOWN 8.48° N</text>
@@ -22,10 +22,10 @@
 <circle cx="620" cy="334" r="7" fill="#D7E3E0"/>
 <text x="620" y="368.5" font-family="Courier New, Courier, monospace" font-size="20" fill="#D7E3E0" font-weight="bold" text-anchor="middle">CHANGSHA · 28.2° N</text>
 <text x="620" y="390.5" font-family="Courier New, Courier, monospace" font-size="13" fill="#748896" font-weight="normal" text-anchor="middle" letter-spacing="1">MSc INDUSTRIAL ENGINEERING · HUNAN UNIVERSITY</text>
-<circle cx="1030" cy="338" r="8" fill="#52C7EA"/>
-<text x="1090" y="228.375" font-family="Courier New, Courier, monospace" font-size="20" fill="#D7E3E0" font-weight="bold" text-anchor="end">WAGENINGEN / ARNHEM · 51.98° N</text>
-<text x="1090" y="250.375" font-family="Courier New, Courier, monospace" font-size="15" fill="#52C7EA" font-weight="normal" text-anchor="end" letter-spacing="1">NEDERRIJN FLOODPLAIN · ≈ NAP</text>
-<text x="1090" y="270.375" font-family="Courier New, Courier, monospace" font-size="13" fill="#748896" font-weight="normal" text-anchor="end" letter-spacing="1">MSc ENVIRONMENTAL SCIENCES · WAGENINGEN UR</text>
-<line x1="1030" y1="280" x2="1030" y2="324" stroke="#2A3A47" stroke-width="1"/>
+<circle cx="1030" cy="340" r="8" fill="#52C7EA"/>
+<text x="1090" y="230.0" font-family="Courier New, Courier, monospace" font-size="20" fill="#D7E3E0" font-weight="bold" text-anchor="end">WAGENINGEN → AMSTERDAM · 52.37° N</text>
+<text x="1090" y="252.0" font-family="Courier New, Courier, monospace" font-size="15" fill="#52C7EA" font-weight="normal" text-anchor="end" letter-spacing="1">NORMAAL AMSTERDAMS PEIL · 0 m</text>
+<text x="1090" y="272.0" font-family="Courier New, Courier, monospace" font-size="13" fill="#748896" font-weight="normal" text-anchor="end" letter-spacing="1">MSc ENVIRONMENTAL SCIENCES · WAGENINGEN UR</text>
+<line x1="1030" y1="282" x2="1030" y2="326" stroke="#2A3A47" stroke-width="1"/>
 <text x="1176" y="34" font-family="Courier New, Courier, monospace" font-size="13" fill="#748896" font-weight="normal" text-anchor="end" letter-spacing="1.5">FIG. 3 — RECHARGE PATH · SOURCE TO DELTA</text>
 </svg>

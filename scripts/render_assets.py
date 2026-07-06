@@ -134,9 +134,10 @@ def frame(w, h, p):
 
 def render_header(p, theme):
     w, h = 1200, 260
-    s = svg_open(w, h, "Borehole log MKS-01 — Moses Kolleh Sesay. Site: Arnhem, "
-                       "the Netherlands. Logged across Freetown, Changsha, "
-                       "Wageningen and Arnhem. Purpose: water, climate, data.")
+    s = svg_open(w, h, "Borehole log MKS-01 — Moses Kolleh Sesay. Site: "
+                       "Amsterdam, the Netherlands. Logged across Freetown, "
+                       "Changsha, Wageningen and Amsterdam. Purpose: water, "
+                       "climate, data.")
     s += frame(w, h, p)
 
     # Wordmark block, left
@@ -149,12 +150,12 @@ def render_header(p, theme):
 
     # Metadata rows
     s += f'<line x1="48" y1="198" x2="740" y2="198" stroke="{p["rule"]}" stroke-width="1"/>\n'
-    s += text(48, 221, "SITE: ARNHEM NL · 51.98° N 5.91° E · NEDERRIJN KM 884", 17,
+    s += text(48, 221, "SITE: AMSTERDAM NL · 52.37° N 4.90° E · HOME OF THE NAP DATUM", 17,
               p, color="faint")
-    s += text(48, 243, "LOGGED ACROSS: FREETOWN → CHANGSHA → WAGENINGEN → ARNHEM",
+    s += text(48, 243, "LOGGED ACROSS: FREETOWN → CHANGSHA → WAGENINGEN → AMSTERDAM",
               17, p, color="faint")
 
-    # Drill derrick over the Nederrijn, right — the page's only looping motion
+    # Drill derrick over the water, right — the page's only looping motion
     ink, water = p["ink"], p["water"]
     s += f'<g stroke="{ink}" stroke-width="2" fill="none" stroke-linecap="round">\n'
     s += '<path d="M905 190 L965 58 L1025 190"/>\n'                    # legs
@@ -184,7 +185,7 @@ def render_header(p, theme):
 
 
 # --------------------------------------------------------------------------
-# 2. Surface conditions — de dagelijkse peiling
+# 2. Daily readings panel — Rhine discharge and atmospheric CO2
 # --------------------------------------------------------------------------
 
 def _month_label(iso):
@@ -199,10 +200,10 @@ def render_surface(p, theme, data):
     rhine = data["rhine"]
     co2 = data["co2"]
     archival = data.get("archival", True)
-    date_label = data["peiling_date"]
+    date_label = data["reading_date"]
 
     def source_line(default, sounded):
-        """A field log never lies — a value not refreshed on peiling day is
+        """A field log never lies — a value not refreshed on reading day is
         labelled with the date it was actually sounded."""
         if archival or not sounded or sounded == date_label:
             return default, "faint"
@@ -219,7 +220,7 @@ def render_surface(p, theme, data):
         s += f'<line x1="{x}" y1="20" x2="{x}" y2="{h - 20}" stroke="{p["rule"]}" stroke-width="1"/>\n'
 
     # ---- Left cell: Rhine discharge at Lobith -----------------------------
-    s += text(36, 48, "RIJN @ LOBITH — AFVOER", 16, p, color="faint", spacing=2)
+    s += text(36, 48, "RHINE @ LOBITH — DISCHARGE", 16, p, color="faint", spacing=2)
     s += text(36, 92, f"{rhine['latest']:,.0f}".replace(",", " ") + " m³/s", 46,
               p, color="water", weight="bold")
 
@@ -266,7 +267,7 @@ def render_surface(p, theme, data):
     s += text(436, 166, c_line, 12, p, color=c_color, spacing=1.5)
 
     # ---- Right cell: the date stamp ---------------------------------------
-    s += text(836, 48, "PEILING", 16, p, color="faint", spacing=2)
+    s += text(836, 48, "READING TAKEN", 16, p, color="faint", spacing=2)
     s += text(836, 92, date_label, 40, p, weight="bold")
     if archival:
         s += text(836, 130, f"ARCHIVAL READING — {_month_label(date_label)}",
@@ -382,8 +383,9 @@ def render_drill_path(p, theme):
     w, h = 1200, 420
     s = svg_open(w, h, "Recharge path, source to delta: Freetown, Sierra Leone "
                        "(Bintumani massif, 1945 m) to Changsha, China, to "
-                       "Wageningen and Arnhem, the Netherlands (Nederrijn "
-                       "floodplain, around NAP 0 m).")
+                       "Wageningen and Amsterdam, the Netherlands — at sea "
+                       "level, on the datum named after the city (Normaal "
+                       "Amsterdams Peil).")
     s += frame(w, h, p)
 
     def ey(elev):  # elevation (m) -> y
@@ -404,7 +406,7 @@ def render_drill_path(p, theme):
 
     fx, fy = 190, ey(1945)
     cx, cy = 620, ey(44)
-    ax, ay = 1030, ey(13)
+    ax, ay = 1030, ey(0)   # Amsterdam sits exactly on the datum named for it
 
     # the descending path
     s += (f'<path d="M{fx} {fy:.0f} C 290 210, 470 300, {cx} {cy:.0f} '
@@ -427,11 +429,11 @@ def render_drill_path(p, theme):
     s += text(cx, cy + 56, "MSc INDUSTRIAL ENGINEERING · HUNAN UNIVERSITY",
               13, p, color="faint", spacing=1, anchor="middle")
 
-    # Wageningen / Arnhem — stacked well above the floodplain point
+    # Wageningen / Amsterdam — stacked well above the sea-level point
     s += f'<circle cx="{ax}" cy="{ay:.0f}" r="8" fill="{p["water"]}"/>\n'
-    s += text(ax + 60, ay - 110, "WAGENINGEN / ARNHEM · 51.98° N", 20, p,
+    s += text(ax + 60, ay - 110, "WAGENINGEN → AMSTERDAM · 52.37° N", 20, p,
               weight="bold", anchor="end")
-    s += text(ax + 60, ay - 88, "NEDERRIJN FLOODPLAIN · ≈ NAP", 15, p,
+    s += text(ax + 60, ay - 88, "NORMAAL AMSTERDAMS PEIL · 0 m", 15, p,
               color="water", anchor="end", spacing=1)
     s += text(ax + 60, ay - 68, "MSc ENVIRONMENTAL SCIENCES · WAGENINGEN UR",
               13, p, color="faint", anchor="end", spacing=1)
