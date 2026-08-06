@@ -19,7 +19,7 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/surface-conditions-dark.svg">
-  <img src="assets/surface-conditions-light.svg" alt="Surface conditions 2026-08-05: Rhine discharge at Lobith 1,860 m3/s, 30-day sounding; atmospheric CO2 427.9 ppm, NOAA global trend." width="100%">
+  <img src="assets/surface-conditions-light.svg" alt="Surface conditions 2026-08-06: Rhine discharge at Lobith 1,860 m3/s, 30-day sounding; atmospheric CO2 427.9 ppm, NOAA global trend." width="100%">
 </picture>
 
 > *Two numbers I watch the way other people watch the weather: how much water the Rhine is carrying as it enters the Netherlands (measured at Lobith, the gauge the whole country checks first), and how much CO₂ is in the air. A script logs them here every morning — and because a hydrologist never trusts an undated reading, the panel always shows the date it was taken. [How this works →](scripts/update_surface_conditions.py)*
