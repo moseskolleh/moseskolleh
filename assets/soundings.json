@@ -1,6 +1,6 @@
 {
   "archival": false,
-  "reading_date": "2026-09-20",
+  "reading_date": "2026-09-21",
   "rhine": {
     "station": "Lobith",
     "quantity": "Q",
@@ -41,7 +41,7 @@
     ]
   },
   "co2": {
-    "latest": 427.9,
+    "latest": 428.0,
     "monthly": [
       424.09,
       422.86,
@@ -57,6 +57,6 @@
       427.62
     ],
     "source": "NOAA GML global trend",
-    "sounded": "2026-09-20"
+    "sounded": "2026-09-21"
   }
 }
