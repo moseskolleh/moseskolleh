@@ -1,6 +1,6 @@
 {
   "archival": false,
-  "reading_date": "2026-10-11",
+  "reading_date": "2026-10-12",
   "rhine": {
     "station": "Lobith",
     "quantity": "Q",
@@ -57,6 +57,6 @@
       426.1
     ],
     "source": "NOAA GML global trend",
-    "sounded": "2026-10-11"
+    "sounded": "2026-10-12"
   }
 }
