@@ -1,17 +1,17 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
-  <img src="assets/header-light.svg" alt="Borehole log MKS-01 — Moses Kolleh Sesay. Site: Amsterdam, the Netherlands, 52.37°N 4.90°E, home of the NAP sea-level datum. Logged across Freetown, Changsha, Wageningen and Amsterdam. Purpose: water, climate, data." width="100%">
+  <img src="assets/header-light.svg" alt="Borehole log MKS-01 — Moses Kolleh Sesay, hydrogeologist turned flood-risk researcher. Site: Pavia, Italy, 45.19°N 9.16°E, on the Ticino in the Po plain. Logged across Freetown, Changsha, Wageningen, Amsterdam and Pavia. Purpose: water, climate, data." width="100%">
 </picture>
 
 | | |
 |---|---|
-| **LOGGED BY** | Moses Kolleh Sesay — hydrogeologist → climate-tech builder · Amsterdam, NL |
+| **LOGGED BY** | Moses Kolleh Sesay — hydrogeologist → flood-risk researcher · Pavia, IT |
 | **CONTACT** | [moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com) · [LinkedIn](https://www.linkedin.com/in/moseskollehsesay) · [@MosesKolleh](https://x.com/MosesKolleh) · [Portfolio](https://moseskolleh.github.io/sustaintheworld/) |
 | **KEY SAMPLES** | [promptcoach](https://github.com/moseskolleh/promptcoach) · [GAIA-Framework](https://github.com/moseskolleh/GAIA-Framework-) · [Maji](https://github.com/moseskolleh/Maji) |
 | **METHOD** | Python · SQL · R · GIS (QGIS, ArcGIS, Google Earth Engine) · TypeScript |
-| **STATUS** | Open to climate-data / climate-tech roles in NL & EU |
+| **STATUS** | PhD researcher at IUSS Pavia from November 2026 · open to collaboration on urban flood risk, climate data and sustainable AI |
 
-> I read landscapes for a living — first with a rock hammer and a dip meter in Sierra Leone, now with pandas and Google Earth Engine in the Netherlands. A core log records what a place is made of, newest layer first. This is mine. **Drill down.**
+> I read landscapes for a living — first with a rock hammer and a dip meter in Sierra Leone, then with pandas and Google Earth Engine in the Netherlands, and now with rainfall records and drainage networks in Northern Italy. A core log records what a place is made of, newest layer first. This is mine. **Drill down.**
 
 `● recording (active)` · `◍ field-validated` · `◌ prototype` · `▣ archived survey`
 
@@ -27,12 +27,23 @@
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-1-dark.svg">
-  <img src="assets/stratum-1-light.svg" alt="Stratum I divider — topsoil texture, depth 0.0 to 1.5 metres." width="100%">
+  <img src="assets/stratum-1-light.svg" alt="Stratum I divider — rain-streaked topsoil, depth 0.0 to 1.0 metres." width="100%">
 </picture>
 
-## Current work — TOPSOIL · 2025–26 · sustainable AI
+## Now — TOPSOIL · 2026–29 · urban flood risk
 
-The newest layer, still unconsolidated. I build tools that make AI's water and energy costs visible before you spend them.
+The newest layer, freshly deposited. From November 2026 I am a doctoral researcher in Pavia, studying how heavier bursts of rain will test the urban drainage of a highly urbanised province in Lombardy: what the floods cost the homes, roads and businesses above the pipes, and which adaptations are worth building.
+
+- ● **PhD, Sustainable Development and Climate Change** — Scuola Universitaria Superiore IUSS Pavia, Italy. Curriculum Beta: human society — socio-economic impacts, policies and institutions. Research topic: *climate-driven flood risk assessment and adaptation of urban drainage systems in Northern Italy*, in the Province of Monza and Brianza. `SAMPLE PV-26 · 2026–29 · urban flood risk · climate projections · socio-economic impacts`
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-2-dark.svg">
+  <img src="assets/stratum-2-light.svg" alt="Stratum II divider — stippled subsoil, depth 1.0 to 2.0 metres." width="100%">
+</picture>
+
+## Sustainable AI — SUBSOIL · 2025–26 · still forming
+
+Still forming beneath the new topsoil. I build tools that make AI's water and energy costs visible before you spend them.
 
 - ● **[promptcoach](https://github.com/moseskolleh/promptcoach)** — Shows an AI prompt's energy, water, and carbon cost in units you can feel — *"2 teaspoons of water"* — before you hit send, then coaches you to shrink it. `SAMPLE PC-77 · JS monorepo · Chrome MV3 · tested core engine · 19-model catalog`
 
@@ -53,8 +64,21 @@ The newest layer, still unconsolidated. I build tools that make AI's water and e
   </details>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-2-dark.svg">
-  <img src="assets/stratum-2-light.svg" alt="Stratum II divider — wavy alluvium bedding, depth 1.5 to 3.0 metres." width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-3-dark.svg">
+  <img src="assets/stratum-3-light.svg" alt="Stratum III divider — gravel bed of transported, well-rounded clasts, depth 2.0 to 3.0 metres." width="100%">
+</picture>
+
+## Experience — GRAVEL · transported, well-rounded
+
+Material carried in from elsewhere and worn smooth by use: the groundwork the PhD now stands on.
+
+- ▣ **UNDRR — Sendai Framework loss monitoring.** Supported the monitoring of disaster losses under the Sendai Framework for Disaster Risk Reduction, whose loss indicator is harmonised with SDG target 11.5 on reducing the human and economic toll of disasters.
+
+- ▣ **MARINA-Multi — multi-basin modelling.** Python-based geospatial integration across multiple river basins.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-4-dark.svg">
+  <img src="assets/stratum-4-light.svg" alt="Stratum IV divider — wavy alluvium bedding, depth 3.0 to 4.5 metres." width="100%">
 </picture>
 
 ## Water & West Africa — ALLUVIUM · water-lain
@@ -66,8 +90,8 @@ Everything I build eventually finds its way back to water. *Maji* is Swahili for
 - ◌ **[climatematchProjects](https://github.com/moseskolleh/climatematchProjects)** — A five-proposal research program design (€2.6M scope) for African climate resilience: drought early warning, hybrid physics-ML flood prediction, and coastal compound risk. `SAMPLE CM-14 · research design`
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-3-dark.svg">
-  <img src="assets/stratum-3-light.svg" alt="Stratum III divider — tightly laminated strata, depth 3.0 to 5.0 metres." width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-5-dark.svg">
+  <img src="assets/stratum-5-light.svg" alt="Stratum V divider — tightly laminated strata, depth 4.5 to 6.0 metres." width="100%">
 </picture>
 
 ## Data analytics — CONSOLIDATED STRATA · 2023–24
@@ -79,33 +103,34 @@ The layer everything above stands on: statistics done carefully enough to say no
 - Google Advanced Data Analytics Professional Certificate — regression and machine learning on real business cases (Automatidata, TikTok, Waze).
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-4-dark.svg">
-  <img src="assets/stratum-4-light.svg" alt="Stratum IV divider — porous aquifer texture with water-table marker, depth 5 to 12 metres." width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-6-dark.svg">
+  <img src="assets/stratum-6-light.svg" alt="Stratum VI divider — porous aquifer texture with water-table marker, depth 6 to 12 metres." width="100%">
 </picture>
 
 ## Education — AQUIFER · recharged on three continents
 
-An aquifer stores what the surface forgets. Mine was recharged in Freetown, Changsha, and Wageningen.
+An aquifer stores what the surface forgets. Mine was recharged in Freetown, Changsha and Wageningen — and, from November 2026, Pavia.
 
 | Degree | Institution |
 |---|---|
+| PhD Sustainable Development and Climate Change *(2026–29, in progress)* | Scuola Universitaria Superiore IUSS Pavia, IT |
 | MSc Environmental Sciences — Human–Environment Interaction | Wageningen University & Research, NL |
 | MSc Industrial Engineering | Hunan University, CN |
 | BSc Honours Geology — Hydrogeology | University of Sierra Leone, SL |
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/drill-path-dark.svg">
-  <img src="assets/drill-path-light.svg" alt="Recharge path, source to delta: from the Bintumani massif in Sierra Leone at 1,945 metres, through Changsha, China, down to Amsterdam at sea level — zero metres on the NAP datum that carries the city's name." width="100%">
+  <img src="assets/drill-path-light.svg" alt="Recharge path, source to delta and back as rain: from the Bintumani massif in Sierra Leone at 1,945 metres, through Changsha, China, down to Amsterdam at sea level — zero metres on the NAP datum that carries the city's name — then the water cycle closes and falls again as rain on Pavia, Italy, 77 metres up on the Ticino." width="100%">
 </picture>
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-5-dark.svg">
-  <img src="assets/stratum-5-light.svg" alt="Stratum V divider — crystalline basement crosshatch, depth 12 metres and beyond. End of hole." width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-7-dark.svg">
+  <img src="assets/stratum-7-light.svg" alt="Stratum VII divider — crystalline basement crosshatch, depth 12 metres and beyond. End of hole." width="100%">
 </picture>
 
 ## Bedrock — SIERRA LEONE
 
-> Basement rock: Freetown, Sierra Leone — where I first learned that water is never abstract. It's about who can reach it, and when. Everything above sits on this. If you're building for climate, water, or the places data usually skips, my inbox is open.
+> Basement rock: Freetown, Sierra Leone — where I first learned that water is never abstract. It's about who can reach it, and when. Everything above sits on this. If you're working on climate, water, flood risk, or the places data usually skips, my inbox is open.
 
 ---
 

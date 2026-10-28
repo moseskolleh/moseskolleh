@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 110" width="1200" height="110" role="img" aria-label="Stratum 5 divider: BEDROCK — SIERRA LEONE, depth 12 m +.">
-<title>Stratum 5 divider: BEDROCK — SIERRA LEONE, depth 12 m +.</title>
-<defs><pattern id="tx5l" width="14" height="14" patternUnits="userSpaceOnUse"><path d="M0 14 L14 0 M-3 3 L3 -3 M11 17 L17 11" stroke="#C4552D" stroke-width="1"/><path d="M0 0 L14 14 M11 -3 L17 3 M-3 11 L3 17" stroke="#C4552D" stroke-width="0.7" opacity="0.6"/></pattern></defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 110" width="1200" height="110" role="img" aria-label="Stratum 5 divider: CONSOLIDATED STRATA — DATA ANALYTICS, depth 4.5 – 6.0 m.">
+<title>Stratum 5 divider: CONSOLIDATED STRATA — DATA ANALYTICS, depth 4.5 – 6.0 m.</title>
+<defs><pattern id="tx5l" width="10" height="7" patternUnits="userSpaceOnUse"><line x1="0" y1="3.5" x2="10" y2="3.5" stroke="#22303A" stroke-width="1"/></pattern></defs>
 <rect x="0" y="0" width="1200" height="110" fill="#FAF6EF"/>
 <rect x="6.5" y="6.5" width="1187" height="97" fill="none" stroke="#22303A" stroke-width="1.5"/>
 <rect x="12.5" y="12.5" width="1175" height="85" fill="none" stroke="#D8D2C4" stroke-width="1"/>
@@ -18,10 +18,10 @@
 <line x1="83" y1="88.6" x2="90" y2="88.6" stroke="#22303A" stroke-width="1"/>
 <line x1="78" y1="97.0" x2="90" y2="97.0" stroke="#22303A" stroke-width="1"/>
 <text x="24" y="34" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1">DEPTH</text>
-<text x="24" y="52" font-family="Courier New, Courier, monospace" font-size="13" fill="#22303A" font-weight="bold" text-anchor="start">12 m +</text>
-<text x="24" y="92" font-family="Courier New, Courier, monospace" font-size="13" fill="#22303A" font-weight="bold" text-anchor="start"></text>
-<rect x="118" y="26" width="470" height="58" fill="#F3EDE0" stroke="#D8D2C4" stroke-width="1"/>
-<text x="134" y="58" font-family="Courier New, Courier, monospace" font-size="32" fill="#22303A" font-weight="bold" text-anchor="start">BEDROCK — SIERRA LEONE</text>
-<text x="134" y="76" font-family="Courier New, Courier, monospace" font-size="14" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1.5">CRYSTALLINE BASEMENT · REFUSAL</text>
-<text x="1172" y="62" font-family="Courier New, Courier, monospace" font-size="15" fill="#C4552D" font-weight="bold" text-anchor="end" letter-spacing="2">END OF HOLE</text>
+<text x="24" y="52" font-family="Courier New, Courier, monospace" font-size="13" fill="#22303A" font-weight="bold" text-anchor="start">4.5</text>
+<text x="24" y="92" font-family="Courier New, Courier, monospace" font-size="13" fill="#22303A" font-weight="bold" text-anchor="start">6.0 m</text>
+<rect x="118" y="26" width="750" height="58" fill="#F3EDE0" stroke="#D8D2C4" stroke-width="1"/>
+<text x="134" y="58" font-family="Courier New, Courier, monospace" font-size="32" fill="#22303A" font-weight="bold" text-anchor="start">CONSOLIDATED STRATA — DATA ANALYTICS</text>
+<text x="134" y="76" font-family="Courier New, Courier, monospace" font-size="14" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1.5">2023–24 · TIGHTLY LAMINATED</text>
+<text x="1172" y="62" font-family="Courier New, Courier, monospace" font-size="15" fill="#22303A" font-weight="bold" text-anchor="end" letter-spacing="2">SAMPLE ZONE V</text>
 </svg>

@@ -47,42 +47,60 @@ PALETTES = {
 STRATA = [
     {
         "n": 1,
-        "depth": "0.0 – 1.5 m",
-        "label": "TOPSOIL — CURRENT WORK",
-        "sub": "SUSTAINABLE AI · 2025–26 · ACTIVELY FORMING",
+        "depth": "0.0 – 1.0 m",
+        "label": "TOPSOIL — PhD RESEARCH",
+        "sub": "URBAN FLOOD RISK · 2026–29 · FRESHLY DEPOSITED",
         "zone": "SAMPLE ZONE I",
+        "texture": "rain",
+        "tint": "water",
+    },
+    {
+        "n": 2,
+        "depth": "1.0 – 2.0 m",
+        "label": "SUBSOIL — SUSTAINABLE AI",
+        "sub": "2025–26 · STILL FORMING",
+        "zone": "SAMPLE ZONE II",
         "texture": "stipple",
         "tint": "green",
     },
     {
-        "n": 2,
-        "depth": "1.5 – 3.0 m",
-        "label": "ALLUVIUM — WATER & WEST AFRICA",
-        "sub": "WATER-LAIN DEPOSITS",
-        "zone": "SAMPLE ZONE II",
-        "texture": "waves",
-        "tint": "water",
-    },
-    {
         "n": 3,
-        "depth": "3.0 – 5.0 m",
-        "label": "CONSOLIDATED STRATA — DATA ANALYTICS",
-        "sub": "2023–24 · TIGHTLY LAMINATED",
+        "depth": "2.0 – 3.0 m",
+        "label": "GRAVEL — EXPERIENCE",
+        "sub": "TRANSPORTED CLASTS · WELL-ROUNDED",
         "zone": "SAMPLE ZONE III",
-        "texture": "laminae",
+        "texture": "gravel",
         "tint": "ink",
     },
     {
         "n": 4,
-        "depth": "5 – 12 m",
-        "label": "AQUIFER — EDUCATION",
-        "sub": "RECHARGED ON THREE CONTINENTS",
+        "depth": "3.0 – 4.5 m",
+        "label": "ALLUVIUM — WATER & WEST AFRICA",
+        "sub": "WATER-LAIN DEPOSITS",
         "zone": "SAMPLE ZONE IV",
-        "texture": "porous",
+        "texture": "waves",
         "tint": "water",
     },
     {
         "n": 5,
+        "depth": "4.5 – 6.0 m",
+        "label": "CONSOLIDATED STRATA — DATA ANALYTICS",
+        "sub": "2023–24 · TIGHTLY LAMINATED",
+        "zone": "SAMPLE ZONE V",
+        "texture": "laminae",
+        "tint": "ink",
+    },
+    {
+        "n": 6,
+        "depth": "6 – 12 m",
+        "label": "AQUIFER — EDUCATION",
+        "sub": "RECHARGED ON THREE CONTINENTS",
+        "zone": "SAMPLE ZONE VI",
+        "texture": "porous",
+        "tint": "water",
+    },
+    {
+        "n": 7,
         "depth": "12 m +",
         "label": "BEDROCK — SIERRA LEONE",
         "sub": "CRYSTALLINE BASEMENT · REFUSAL",
@@ -135,8 +153,8 @@ def frame(w, h, p):
 def render_header(p, theme):
     w, h = 1200, 260
     s = svg_open(w, h, "Borehole log MKS-01 — Moses Kolleh Sesay. Site: "
-                       "Amsterdam, the Netherlands. Logged across Freetown, "
-                       "Changsha, Wageningen and Amsterdam. Purpose: water, "
+                       "Pavia, Italy. Logged across Freetown, Changsha, "
+                       "Wageningen, Amsterdam and Pavia. Purpose: water, "
                        "climate, data.")
     s += frame(w, h, p)
 
@@ -145,14 +163,14 @@ def render_header(p, theme):
               weight="bold", spacing=5)
     s += text(48, 142, "MOSES KOLLEH SESAY", 56, p, weight="bold",
               text_length=640)
-    s += text(48, 178, "HYDROGEOLOGIST → CLIMATE-TECH BUILDER", 19, p,
+    s += text(48, 178, "HYDROGEOLOGIST → FLOOD-RISK RESEARCHER", 19, p,
               color="faint", spacing=2)
 
     # Metadata rows
     s += f'<line x1="48" y1="198" x2="740" y2="198" stroke="{p["rule"]}" stroke-width="1"/>\n'
-    s += text(48, 221, "SITE: AMSTERDAM NL · 52.37° N 4.90° E · HOME OF THE NAP DATUM", 17,
+    s += text(48, 221, "SITE: PAVIA IT · 45.19° N 9.16° E · ON THE TICINO, PO PLAIN", 17,
               p, color="faint")
-    s += text(48, 243, "LOGGED ACROSS: FREETOWN → CHANGSHA → WAGENINGEN → AMSTERDAM",
+    s += text(48, 243, "LOGGED ACROSS: FREETOWN → CHANGSHA → WAGENINGEN → AMSTERDAM → PAVIA",
               17, p, color="faint")
 
     # Drill derrick over the water, right — the page's only looping motion
@@ -300,6 +318,22 @@ def _texture_defs(kind, uid, p, tint):
             f'<circle cx="23" cy="4" r="1.2" fill="{c}"/>'
             f"</pattern>"
         )
+    if kind == "rain":
+        return (
+            f'<pattern id="{uid}" width="22" height="22" patternUnits="userSpaceOnUse">'
+            f'<path d="M7 2 L4 10 M18 12 L15 20" stroke="{c}" stroke-width="1.5" '
+            f'stroke-linecap="round"/>'
+            f"</pattern>"
+        )
+    if kind == "gravel":
+        return (
+            f'<pattern id="{uid}" width="40" height="28" patternUnits="userSpaceOnUse">'
+            f'<ellipse cx="9" cy="8" rx="4.5" ry="3" fill="none" stroke="{c}" stroke-width="1.2"/>'
+            f'<ellipse cx="27" cy="19" rx="3.4" ry="2.4" fill="none" stroke="{c}" stroke-width="1.2"/>'
+            f'<circle cx="33" cy="6" r="1.5" fill="{c}"/>'
+            f'<circle cx="15" cy="22" r="1.3" fill="{c}"/>'
+            f"</pattern>"
+        )
     if kind == "waves":
         return (
             f'<pattern id="{uid}" width="64" height="16" patternUnits="userSpaceOnUse">'
@@ -353,7 +387,7 @@ def render_stratum(p, theme, spec):
               13, p, weight="bold")
 
     # label plate
-    label_w = 30 + len(spec["label"]) * 20
+    label_w = max(30 + len(spec["label"]) * 20, 40 + len(spec["sub"]) * 10)
     s += (f'<rect x="118" y="26" width="{label_w}" height="58" fill="{p["plate"]}" '
           f'stroke="{p["rule"]}" stroke-width="1"/>\n')
     s += text(134, 58, spec["label"], 32, p, weight="bold")
@@ -381,11 +415,13 @@ def render_stratum(p, theme, spec):
 
 def render_drill_path(p, theme):
     w, h = 1200, 420
-    s = svg_open(w, h, "Recharge path, source to delta: Freetown, Sierra Leone "
-                       "(Bintumani massif, 1945 m) to Changsha, China, to "
-                       "Wageningen and Amsterdam, the Netherlands — at sea "
-                       "level, on the datum named after the city (Normaal "
-                       "Amsterdams Peil).")
+    s = svg_open(w, h, "Recharge path, source to delta and back as rain: "
+                       "Freetown, Sierra Leone (Bintumani massif, 1945 m) to "
+                       "Changsha, China, to Wageningen and Amsterdam, the "
+                       "Netherlands, at sea level on the Normaal Amsterdams "
+                       "Peil datum; then the water cycle closes and falls "
+                       "again as rain on Pavia, Italy (77 m), on the Ticino "
+                       "in the Po plain.")
     s += frame(w, h, p)
 
     def ey(elev):  # elevation (m) -> y
@@ -404,14 +440,30 @@ def render_drill_path(p, theme):
               spacing=1.5)
     s += text(72, 344, "0 m", 12, p, color="faint", anchor="end")
 
-    fx, fy = 190, ey(1945)
-    cx, cy = 620, ey(44)
-    ax, ay = 1030, ey(0)   # Amsterdam sits exactly on the datum named for it
+    fx, fy = 170, ey(1945)
+    cx, cy = 500, ey(44)
+    ax, ay = 820, ey(0)    # Amsterdam sits exactly on the datum named for it
+    px, py = 1080, ey(77)  # Pavia, on the Ticino just above the Po
 
-    # the descending path
-    s += (f'<path d="M{fx} {fy:.0f} C 290 210, 470 300, {cx} {cy:.0f} '
-          f'S 900 {ay:.0f}, {ax} {ay:.0f}" fill="none" stroke="{p["ink"]}" '
+    # the descending path, source to delta
+    s += (f'<path d="M{fx} {fy:.0f} C 260 210, 420 320, {cx} {cy:.0f} '
+          f'S 720 {ay:.0f}, {ax} {ay:.0f}" fill="none" stroke="{p["ink"]}" '
           f'stroke-width="2" stroke-dasharray="8 7"/>\n')
+
+    # the cycle closes: up from the delta, back down as rain on Pavia
+    s += (f'<path d="M{ax + 8} {ay - 6:.0f} C 900 300, 930 200, 1010 196" '
+          f'fill="none" stroke="{p["water"]}" stroke-width="2" '
+          f'stroke-dasharray="4 6"/>\n')
+    s += (f'<path d="M1012 204 Q1004 184 1026 180 Q1032 160 1056 166 '
+          f'Q1072 150 1092 166 Q1114 166 1110 186 Q1122 204 1100 206 Z" '
+          f'fill="{p["bg"]}" stroke="{p["water"]}" stroke-width="2" '
+          f'stroke-linejoin="round"/>\n')
+    for x in (1036, 1058, 1080, 1102):
+        s += (f'<line x1="{x}" y1="214" x2="{x - 8}" y2="{py - 18:.0f}" '
+              f'stroke="{p["water"]}" stroke-width="1.6" stroke-dasharray="6 8" '
+              f'stroke-linecap="round"/>\n')
+    s += text(w - 28, 392, "THE CYCLE CLOSES · BACK UPSTREAM AS RAIN", 12, p,
+              color="water", anchor="end", spacing=1.5)
 
     # Source: the Bintumani massif — Sierra Leone's roof, where the rivers rise
     s += f'<circle cx="{fx}" cy="{fy:.0f}" r="8" fill="{p["laterite"]}"/>\n'
@@ -429,19 +481,28 @@ def render_drill_path(p, theme):
     s += text(cx, cy + 56, "MSc INDUSTRIAL ENGINEERING · HUNAN UNIVERSITY",
               13, p, color="faint", spacing=1, anchor="middle")
 
-    # Wageningen / Amsterdam — stacked well above the sea-level point
+    # Wageningen / Amsterdam — stacked above, to the left of the delta point
     s += f'<circle cx="{ax}" cy="{ay:.0f}" r="8" fill="{p["water"]}"/>\n'
-    s += text(ax + 60, ay - 110, "WAGENINGEN → AMSTERDAM · 52.37° N", 20, p,
+    s += text(ax - 18, ay - 104, "WAGENINGEN → AMSTERDAM · 52.37° N", 20, p,
               weight="bold", anchor="end")
-    s += text(ax + 60, ay - 88, "NORMAAL AMSTERDAMS PEIL · 0 m", 15, p,
+    s += text(ax - 18, ay - 82, "NORMAAL AMSTERDAMS PEIL · 0 m", 15, p,
               color="water", anchor="end", spacing=1)
-    s += text(ax + 60, ay - 68, "MSc ENVIRONMENTAL SCIENCES · WAGENINGEN UR",
+    s += text(ax - 18, ay - 62, "MSc ENVIRONMENTAL SCIENCES · WAGENINGEN UR",
               13, p, color="faint", anchor="end", spacing=1)
     s += (f'<line x1="{ax}" y1="{ay - 58:.0f}" x2="{ax}" y2="{ay - 14:.0f}" '
           f'stroke="{p["rule"]}" stroke-width="1"/>\n')
 
-    s += text(w - 24, 34, "FIG. 3 — RECHARGE PATH · SOURCE TO DELTA", 13, p,
-              color="faint", anchor="end", spacing=1.5)
+    # Pavia — where the rain lands; labels sit above the cloud
+    s += f'<circle cx="{px}" cy="{py:.0f}" r="8" fill="{p["green"]}"/>\n'
+    s += text(w - 28, 96, "PAVIA · 45.19° N", 20, p, weight="bold",
+              anchor="end")
+    s += text(w - 28, 118, "TICINO · PO PLAIN · 77 m", 15, p, color="green",
+              anchor="end", spacing=1)
+    s += text(w - 28, 138, "PhD · IUSS PAVIA · 2026–29", 13, p,
+              color="faint", anchor="end", spacing=1)
+
+    s += text(w - 24, 34, "FIG. 3 — RECHARGE PATH · SOURCE TO DELTA, BACK AS RAIN",
+              13, p, color="faint", anchor="end", spacing=1.5)
     s += "</svg>\n"
     return s
 
