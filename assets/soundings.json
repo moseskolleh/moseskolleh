@@ -2,7 +2,7 @@
   "archival": false,
   "reading_date": "2026-10-29",
   "rhine": {
-    "latest": 1008,
+    "latest": 1006,
     "series": [
       546,
       553,
@@ -33,7 +33,7 @@
       855,
       924,
       1008,
-      1008
+      1006
     ],
     "station": "Lobith",
     "quantity": "Q",
