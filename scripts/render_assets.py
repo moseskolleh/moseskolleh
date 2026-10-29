@@ -153,7 +153,7 @@ def frame(w, h, p):
 def render_header(p, theme):
     w, h = 1200, 260
     s = svg_open(w, h, "Borehole log MKS-01 — Moses Kolleh Sesay. Site: "
-                       "Pavia, Italy. Logged across Freetown, Changsha, "
+                       "Pavia, Italy. Logged across Freetown, Changsha, Bonn, "
                        "Wageningen, Amsterdam and Pavia. Purpose: water, "
                        "climate, data.")
     s += frame(w, h, p)
@@ -170,7 +170,7 @@ def render_header(p, theme):
     s += f'<line x1="48" y1="198" x2="740" y2="198" stroke="{p["rule"]}" stroke-width="1"/>\n'
     s += text(48, 221, "SITE: PAVIA IT · 45.19° N 9.16° E · ON THE TICINO, PO PLAIN", 17,
               p, color="faint")
-    s += text(48, 243, "LOGGED ACROSS: FREETOWN → CHANGSHA → WAGENINGEN → AMSTERDAM → PAVIA",
+    s += text(48, 243, "ROUTE: FREETOWN → CHANGSHA → BONN → WAGENINGEN → AMSTERDAM → PAVIA",
               17, p, color="faint")
 
     # Drill derrick over the water, right — the page's only looping motion
@@ -217,6 +217,7 @@ def render_surface(p, theme, data):
     w, h = 1200, 180
     rhine = data["rhine"]
     co2 = data["co2"]
+    rain = data.get("rain")   # absent until the first Monza sounding
     archival = data.get("archival", True)
     date_label = data["reading_date"]
 
@@ -227,26 +228,28 @@ def render_surface(p, theme, data):
             return default, "faint"
         return f"CARRIED FORWARD · {sounded}", "laterite"
 
+    rain_alt = (f"rain at Monza {rain['total_30d']:.0f} mm over 30 days; "
+                if rain else "")
     s = svg_open(w, h, f"Surface conditions panel. Rhine discharge at Lobith "
                        f"{rhine['latest']:,.0f} cubic metres per second; "
-                       f"atmospheric CO2 {co2['latest']:.1f} ppm (NOAA global "
-                       f"trend); reading dated {date_label}.")
+                       f"{rain_alt}atmospheric CO2 {co2['latest']:.1f} ppm "
+                       f"(NOAA global trend); reading dated {date_label}.")
     s += frame(w, h, p)
 
-    # cell separators
-    for x in (400, 800):
+    # four cells: Rhine, Monza rain, CO2, the date stamp
+    for x in (300, 600, 900):
         s += f'<line x1="{x}" y1="20" x2="{x}" y2="{h - 20}" stroke="{p["rule"]}" stroke-width="1"/>\n'
 
-    # ---- Left cell: Rhine discharge at Lobith -----------------------------
-    s += text(36, 48, "RHINE @ LOBITH — DISCHARGE", 16, p, color="faint", spacing=2)
-    s += text(36, 92, f"{rhine['latest']:,.0f}".replace(",", " ") + " m³/s", 46,
+    # ---- Cell 1: Rhine discharge at Lobith --------------------------------
+    s += text(32, 48, "RHINE @ LOBITH", 15, p, color="faint", spacing=2)
+    s += text(32, 90, f"{rhine['latest']:,.0f}".replace(",", " ") + " m³/s", 38,
               p, color="water", weight="bold")
 
     series = [float(v) for v in rhine["series"][-30:]]
     # fixed reference band, auto-expanded so a flood never renders as a clamp
     lo = min(800.0, min(series) * 0.95)
     hi = max(4200.0, max(series) * 1.06)
-    bx0, bx1, by0, by1 = 36, 376, 106, 150   # sparkline box
+    bx0, bx1, by0, by1 = 32, 240, 106, 150   # sparkline box
     def sy(v):
         return by1 - (float(v) - lo) / (hi - lo) * (by1 - by0)
     # normal-range guides (≈1 100 – 4 000 m³/s)
@@ -254,7 +257,7 @@ def render_surface(p, theme, data):
         gy = sy(guide)
         s += (f'<line x1="{bx0}" y1="{gy:.1f}" x2="{bx1}" y2="{gy:.1f}" '
               f'stroke="{p["rule"]}" stroke-width="1" stroke-dasharray="3 4"/>\n')
-        s += text(396, round(gy + 4, 1), glabel, 11, p, color="faint",
+        s += text(286, round(gy + 4, 1), glabel, 11, p, color="faint",
                   anchor="end")
     if len(series) > 1:
         step = (bx1 - bx0) / (len(series) - 1)
@@ -263,13 +266,41 @@ def render_surface(p, theme, data):
               f'stroke-width="2.5" stroke-linejoin="round"/>\n')
         lx = bx0 + (len(series) - 1) * step
         s += f'<circle cx="{lx:.1f}" cy="{sy(series[-1]):.1f}" r="4" fill="{p["water"]}"/>\n'
-    r_line, r_color = source_line("30-DAY SOUNDING · RIJKSWATERSTAAT",
+    r_line, r_color = source_line("30 DAYS · RIJKSWATERSTAAT",
                                   rhine.get("sounded"))
-    s += text(36, 166, r_line, 12, p, color=r_color, spacing=1.5)
+    s += text(32, 166, r_line, 11, p, color=r_color, spacing=1.2)
 
-    # ---- Middle cell: atmospheric CO2 -------------------------------------
-    s += text(436, 48, "ATMOSPHERE — CO₂", 16, p, color="faint", spacing=2)
-    s += text(436, 92, f"{co2['latest']:.1f} ppm", 46, p, color="green",
+    # ---- Cell 2: rain at Monza, where the PhD is set -----------------------
+    s += text(332, 48, "RAIN @ MONZA", 15, p, color="faint", spacing=2)
+    if rain:
+        total = rain["total_30d"]
+        s += text(332, 90, f"{total:.0f} mm", 38, p, color="water",
+                  weight="bold")
+        daily = [float(v) for v in rain["daily"][-30:]]
+        top = max(20.0, max(daily))   # 20 mm/day scale unless a storm needs more
+        bar_w = 208 / 30
+        for i, v in enumerate(daily):
+            bar_h = v / top * 44
+            if bar_h < 0.5:
+                continue
+            s += (f'<rect x="{332 + i * bar_w:.1f}" y="{150 - bar_h:.1f}" '
+                  f'width="{bar_w - 2:.1f}" height="{bar_h:.1f}" '
+                  f'fill="{p["water"]}" opacity="0.75"/>\n')
+        s += (f'<line x1="332" y1="150.5" x2="540" y2="150.5" '
+              f'stroke="{p["rule"]}" stroke-width="1"/>\n')
+        m_line, m_color = source_line("30-DAY TOTAL · ARPA LOMBARDIA",
+                                      rain.get("sounded"))
+        s += text(332, 166, m_line, 11, p, color=m_color, spacing=1.2)
+    else:
+        s += text(332, 90, "— mm", 38, p, color="faint", weight="bold")
+        s += text(332, 130, "AWAITING FIRST SOUNDING", 12, p, color="faint",
+                  spacing=1.2)
+        s += text(332, 166, "ARPA LOMBARDIA RAIN GAUGE", 11, p, color="faint",
+                  spacing=1.2)
+
+    # ---- Cell 3: atmospheric CO2 -------------------------------------------
+    s += text(632, 48, "ATMOSPHERE — CO₂", 15, p, color="faint", spacing=2)
+    s += text(632, 90, f"{co2['latest']:.1f} ppm", 38, p, color="green",
               weight="bold")
     monthly = co2["monthly"][-12:]
     if monthly:
@@ -277,29 +308,30 @@ def render_surface(p, theme, data):
         span = (mhi - mlo) or 1.0
         for i, v in enumerate(monthly):
             bar_h = 8 + (v - mlo) / span * 34
-            bx = 436 + i * 28
-            s += (f'<rect x="{bx}" y="{150 - bar_h:.1f}" width="14" '
+            bx = 632 + i * 19
+            s += (f'<rect x="{bx}" y="{150 - bar_h:.1f}" width="11" '
                   f'height="{bar_h:.1f}" fill="{p["green"]}" opacity="{0.35 + 0.5 * i / 11:.2f}"/>\n')
-    c_line, c_color = source_line("NOAA GLOBAL TREND · TRAILING 12 MO",
+    c_line, c_color = source_line("NOAA GLOBAL · 12 MONTHS",
                                   co2.get("sounded"))
-    s += text(436, 166, c_line, 12, p, color=c_color, spacing=1.5)
+    s += text(632, 166, c_line, 11, p, color=c_color, spacing=1.2)
 
-    # ---- Right cell: the date stamp ---------------------------------------
-    s += text(836, 48, "READING TAKEN", 16, p, color="faint", spacing=2)
-    s += text(836, 92, date_label, 40, p, weight="bold")
+    # ---- Cell 4: the date stamp --------------------------------------------
+    s += text(932, 48, "READING TAKEN", 15, p, color="faint", spacing=2)
+    s += text(932, 90, date_label, 34, p, weight="bold")
     if archival:
-        s += text(836, 130, f"ARCHIVAL READING — {_month_label(date_label)}",
-                  20, p, color="laterite", weight="bold", spacing=1)
-        s += text(836, 154, "AWAITING FIRST AUTOMATED SOUNDING", 13, p,
+        s += text(932, 120, f"ARCHIVAL — {_month_label(date_label)}",
+                  15, p, color="laterite", weight="bold", spacing=1)
+        s += text(932, 142, "AWAITING FIRST SOUNDING", 12, p,
                   color="faint", spacing=1)
     else:
-        s += text(836, 126, "CONDITIONS AT TIME OF LOGGING", 15, p,
+        s += text(932, 120, "CONDITIONS AT LOGGING", 13, p,
                   color="faint", spacing=1)
-        s += text(836, 150, "TAKEN DAILY · 05:15 UTC", 13, p, color="faint",
+        s += text(932, 142, "TAKEN DAILY · 05:15 UTC", 13, p, color="faint",
                   spacing=1)
 
-    s += text(w - 24, 34, "FIG. 2 — SURFACE CONDITIONS", 13, p, color="faint",
-              anchor="end", spacing=1.5)
+    # four cells leave no room up top, so this sheet signs off bottom-right
+    s += text(w - 28, 166, "FIG. 2 — SURFACE CONDITIONS", 11, p, color="faint",
+              anchor="end", spacing=1.2)
     s += "</svg>\n"
     return s
 
@@ -471,7 +503,7 @@ def render_drill_path(p, theme):
               weight="bold")
     s += text(fx + 22, fy + 10, "SIERRA LEONE · FREETOWN 8.48° N", 15, p,
               color="laterite", spacing=1)
-    s += text(fx + 22, fy + 32, "BSc HONS GEOLOGY & HYDROGEOLOGY", 13, p,
+    s += text(fx + 22, fy + 32, "BSc HONS GEOLOGY · FIRST CLASS", 13, p,
               color="faint", spacing=1)
 
     # Changsha — labels below the point (it sits near sea level)
