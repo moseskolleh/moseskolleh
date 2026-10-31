@@ -1,10 +1,9 @@
 {
   "archival": false,
-  "reading_date": "2026-10-30",
+  "reading_date": "2026-10-31",
   "rhine": {
-    "latest": 922,
+    "latest": 872,
     "series": [
-      553,
       569,
       584,
       577,
@@ -33,12 +32,13 @@
       924,
       1008,
       979,
-      922
+      909,
+      872
     ],
     "station": "Lobith",
     "quantity": "Q",
     "unit": "m3/s",
-    "sounded": "2026-10-30"
+    "sounded": "2026-10-31"
   },
   "co2": {
     "latest": 428.1,
@@ -57,7 +57,7 @@
       426.1
     ],
     "source": "NOAA GML global trend",
-    "sounded": "2026-10-30"
+    "sounded": "2026-10-31"
   },
   "rain": {
     "station": "Monza v.Monte Generoso",

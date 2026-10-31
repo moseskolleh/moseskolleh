@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" width="1200" height="180" role="img" aria-label="Surface conditions panel. Rhine discharge at Lobith 922 cubic metres per second; rain at Monza 74 mm over 30 days; atmospheric CO2 428.1 ppm (NOAA global trend); reading dated 2026-10-30.">
-<title>Surface conditions panel. Rhine discharge at Lobith 922 cubic metres per second; rain at Monza 74 mm over 30 days; atmospheric CO2 428.1 ppm (NOAA global trend); reading dated 2026-10-30.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 180" width="1200" height="180" role="img" aria-label="Surface conditions panel. Rhine discharge at Lobith 872 cubic metres per second; rain at Monza 74 mm over 30 days; atmospheric CO2 428.1 ppm (NOAA global trend); reading dated 2026-10-31.">
+<title>Surface conditions panel. Rhine discharge at Lobith 872 cubic metres per second; rain at Monza 74 mm over 30 days; atmospheric CO2 428.1 ppm (NOAA global trend); reading dated 2026-10-31.</title>
 <rect x="0" y="0" width="1200" height="180" fill="#FAF6EF"/>
 <rect x="6.5" y="6.5" width="1187" height="167" fill="none" stroke="#22303A" stroke-width="1.5"/>
 <rect x="12.5" y="12.5" width="1175" height="155" fill="none" stroke="#D8D2C4" stroke-width="1"/>
@@ -7,13 +7,13 @@
 <line x1="600" y1="20" x2="600" y2="160" stroke="#D8D2C4" stroke-width="1"/>
 <line x1="900" y1="20" x2="900" y2="160" stroke="#D8D2C4" stroke-width="1"/>
 <text x="32" y="48" font-family="Courier New, Courier, monospace" font-size="15" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="2">RHINE @ LOBITH</text>
-<text x="32" y="90" font-family="Courier New, Courier, monospace" font-size="38" fill="#1272B6" font-weight="bold" text-anchor="start">922 m³/s</text>
+<text x="32" y="90" font-family="Courier New, Courier, monospace" font-size="38" fill="#1272B6" font-weight="bold" text-anchor="start">872 m³/s</text>
 <line x1="32" y1="108.4" x2="240" y2="108.4" stroke="#D8D2C4" stroke-width="1" stroke-dasharray="3 4"/>
 <text x="286" y="112.4" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="end">4 000</text>
-<line x1="32" y1="143.1" x2="240" y2="143.1" stroke="#D8D2C4" stroke-width="1" stroke-dasharray="3 4"/>
-<text x="286" y="147.1" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="end">1 100</text>
-<polyline points="32.0,149.7 39.2,149.5 46.3,149.3 53.5,149.4 60.7,149.4 67.9,149.4 75.0,149.4 82.2,149.3 89.4,148.8 96.6,148.7 103.7,148.6 110.9,148.7 118.1,148.8 125.2,148.9 132.4,148.8 139.6,148.8 146.8,148.9 153.9,148.8 161.1,148.9 168.3,149.0 175.4,149.1 182.6,149.0 189.8,148.8 197.0,148.4 204.1,147.3 211.3,146.1 218.5,145.2 225.7,144.2 232.8,144.6 240.0,145.3" fill="none" stroke="#1272B6" stroke-width="2.5" stroke-linejoin="round"/>
-<circle cx="240.0" cy="145.3" r="4" fill="#1272B6"/>
+<line x1="32" y1="143.3" x2="240" y2="143.3" stroke="#D8D2C4" stroke-width="1" stroke-dasharray="3 4"/>
+<text x="286" y="147.3" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="end">1 100</text>
+<polyline points="32.0,149.7 39.2,149.5 46.3,149.6 53.5,149.6 60.7,149.6 67.9,149.6 75.0,149.5 82.2,149.0 89.4,148.9 96.6,148.7 103.7,148.9 110.9,149.0 118.1,149.0 125.2,148.9 132.4,149.0 139.6,149.0 146.8,148.9 153.9,149.1 161.1,149.2 168.3,149.2 175.4,149.1 182.6,149.0 189.8,148.6 197.0,147.5 204.1,146.2 211.3,145.4 218.5,144.4 225.7,144.7 232.8,145.6 240.0,146.0" fill="none" stroke="#1272B6" stroke-width="2.5" stroke-linejoin="round"/>
+<circle cx="240.0" cy="146.0" r="4" fill="#1272B6"/>
 <text x="32" y="166" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1.2">30 DAYS · RIJKSWATERSTAAT</text>
 <text x="332" y="48" font-family="Courier New, Courier, monospace" font-size="15" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="2">RAIN @ MONZA</text>
 <text x="332" y="90" font-family="Courier New, Courier, monospace" font-size="38" fill="#1272B6" font-weight="bold" text-anchor="start">74 mm</text>
@@ -25,7 +25,7 @@
 <rect x="470.7" y="106.0" width="4.9" height="44.0" fill="#1272B6" opacity="0.75"/>
 <rect x="484.5" y="145.5" width="4.9" height="4.5" fill="#1272B6" opacity="0.75"/>
 <line x1="332" y1="150.5" x2="540" y2="150.5" stroke="#D8D2C4" stroke-width="1"/>
-<text x="332" y="166" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1.2">30-DAY TOTAL · ARPA LOMBARDIA</text>
+<text x="332" y="166" font-family="Courier New, Courier, monospace" font-size="11" fill="#C4552D" font-weight="normal" text-anchor="start" letter-spacing="1.2">CARRIED FORWARD · 2026-10-30</text>
 <text x="632" y="48" font-family="Courier New, Courier, monospace" font-size="15" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="2">ATMOSPHERE — CO₂</text>
 <text x="632" y="90" font-family="Courier New, Courier, monospace" font-size="38" fill="#3E7C4F" font-weight="bold" text-anchor="start">428.1 ppm</text>
 <rect x="632" y="142.0" width="11" height="8.0" fill="#3E7C4F" opacity="0.35"/>
@@ -42,7 +42,7 @@
 <rect x="841" y="123.1" width="11" height="26.9" fill="#3E7C4F" opacity="0.85"/>
 <text x="632" y="166" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1.2">NOAA GLOBAL · 12 MONTHS</text>
 <text x="932" y="48" font-family="Courier New, Courier, monospace" font-size="15" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="2">READING TAKEN</text>
-<text x="932" y="90" font-family="Courier New, Courier, monospace" font-size="34" fill="#22303A" font-weight="bold" text-anchor="start">2026-10-30</text>
+<text x="932" y="90" font-family="Courier New, Courier, monospace" font-size="34" fill="#22303A" font-weight="bold" text-anchor="start">2026-10-31</text>
 <text x="932" y="120" font-family="Courier New, Courier, monospace" font-size="13" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1">CONDITIONS AT LOGGING</text>
 <text x="932" y="142" font-family="Courier New, Courier, monospace" font-size="13" fill="#68757F" font-weight="normal" text-anchor="start" letter-spacing="1">TAKEN DAILY · 05:15 UTC</text>
 <text x="1172" y="166" font-family="Courier New, Courier, monospace" font-size="11" fill="#68757F" font-weight="normal" text-anchor="end" letter-spacing="1.2">FIG. 2 — SURFACE CONDITIONS</text>
