@@ -1,10 +1,9 @@
 {
   "archival": false,
-  "reading_date": "2026-11-05",
+  "reading_date": "2026-11-06",
   "rhine": {
-    "latest": 665,
+    "latest": 654,
     "series": [
-      575,
       581,
       623,
       632,
@@ -33,12 +32,13 @@
       764,
       720,
       685,
-      665
+      662,
+      654
     ],
     "station": "Lobith",
     "quantity": "Q",
     "unit": "m3/s",
-    "sounded": "2026-11-05"
+    "sounded": "2026-11-06"
   },
   "co2": {
     "latest": 428.2,
@@ -57,13 +57,12 @@
       426.1
     ],
     "source": "NOAA GML global trend",
-    "sounded": "2026-11-05"
+    "sounded": "2026-11-06"
   },
   "rain": {
     "station": "Monza v.Monte Generoso",
-    "total_30d": 74.0,
+    "total_30d": 61.8,
     "daily": [
-      12.2,
       6.2,
       0.2,
       0.2,
@@ -92,10 +91,11 @@
       0.0,
       0.0,
       0.0,
+      0.0,
       0.0
     ],
     "unit": "mm",
     "source": "ARPA Lombardia",
-    "sounded": "2026-11-05"
+    "sounded": "2026-11-06"
   }
 }
