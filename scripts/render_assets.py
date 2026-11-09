@@ -15,8 +15,8 @@ refreshes every morning. Do not edit the SVGs by hand: change this script
 and run it again.
 
 Design notes
-  - Transparent background, GitHub's own text colours and system font, so
-    the figures sit on the page instead of in a box.
+  - Transparent background and system font, so the figures sit on the
+    page instead of in a box; colours from the website's brand palette.
   - Type is sized for a README column that scales the 840-unit canvas down
     to about 340 px on a phone: the name and the headline values stay
     legible there; the small labels are also given as plain text in the
@@ -40,25 +40,33 @@ W = 840
 SANS = ("-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', "
         "Helvetica, Arial, sans-serif")
 
-# Text and rule colours follow GitHub's light and dark themes. The two data
-# colours are a validated pair (colour-blind separation and 3:1 contrast on
-# both surfaces): blue for water, orange for the atmosphere.
+# The colours are the brand palette of moseskolleh.github.io (style.css):
+# green as the primary accent, amber as the feature accent, and the site's
+# own text colours, each in its light-mode and dark-mode value. Hairlines
+# are the green at low opacity, as the site's --line-color is.
+#
+# Green and amber are hard to tell apart with red-green colour blindness,
+# so colour never carries identity here: each figure plots one series and
+# names it in its title. "surface" is GitHub's page colour behind the
+# transparent figure, used only for the ring around a line's end marker.
 PALETTES = {
     "light": {
         "surface": "#ffffff",
-        "fg": "#1f2328",
-        "sub": "#59636e",
-        "rule": "#d1d9e0",
-        "water": "#2a78d6",
-        "air": "#eb6834",
+        "fg": "#161914",
+        "sub": "#54584f",
+        "rule": "#228b22",
+        "rule_opacity": 0.3,
+        "water": "#1a7a1a",
+        "air": "#8a6100",
     },
     "dark": {
         "surface": "#0d1117",
-        "fg": "#f0f6fc",
-        "sub": "#9198a1",
-        "rule": "#3d444d",
-        "water": "#3987e5",
-        "air": "#d95926",
+        "fg": "#ffffff",
+        "sub": "#b0b0b0",
+        "rule": "#7cfc00",
+        "rule_opacity": 0.28,
+        "water": "#7cfc00",
+        "air": "#f2b705",
     },
 }
 
@@ -88,7 +96,8 @@ def text(x, y, s, size, fill, weight=400, anchor="start", spacing=None):
 
 def rule(x1, x2, y, p):
     return (f'<line x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" '
-            f'stroke="{p["rule"]}" stroke-width="1"/>\n')
+            f'stroke="{p["rule"]}" stroke-opacity="{p["rule_opacity"]}" '
+            f'stroke-width="1"/>\n')
 
 
 def nice_date(iso):
@@ -170,7 +179,8 @@ def render_banner(p, theme, data):
     for i in range(30):
         x = i * slot + slot / 2
         s += (f'<line x1="{x:.1f}" y1="{base_y}" x2="{x:.1f}" '
-              f'y2="{base_y + 4}" stroke="{p["rule"]}" stroke-width="1"/>\n')
+              f'y2="{base_y + 4}" stroke="{p["rule"]}" '
+              f'stroke-opacity="{p["rule_opacity"]}" stroke-width="1"/>\n')
 
     daily = [float(v) for v in (rain["daily"][-30:] if rain else [])]
     if daily and max(daily) > 0:
