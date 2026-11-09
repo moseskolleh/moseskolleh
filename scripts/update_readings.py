@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-"""Daily readings — refresh the surface-conditions panel.
+"""Daily readings: refresh the figures on the profile README.
 
-Fetches three open datasets and re-renders assets/surface-conditions-*.svg:
+Fetches three open datasets, re-renders assets/banner-*.svg and
+assets/readings-*.svg, and rewrites the one sentence of the README that
+states the same numbers as text:
 
   1. Rhine discharge (Q, m3/s) at Lobith, from Rijkswaterstaat
      WaterWebservices (ddapi20) — where the Rhine enters the Netherlands.
@@ -9,10 +11,11 @@ Fetches three open datasets and re-renders assets/surface-conditions-*.svg:
      Open Data Lombardia portal — the province the PhD studies.
   3. Atmospheric CO2, from the NOAA GML global daily trend file.
 
-FAIL-SOFT CONTRACT: a field log never lies — it just gets older. On ANY
-fetch, parse, or schema error this script exits 0 WITHOUT writing, so the
-previous dated reading stands. A partial success (some sources up, some
-down) keeps the fresh sources and carries the stale values forward.
+FAIL-SOFT CONTRACT: a reading is never invented, it only gets older. On
+ANY fetch, parse, or schema error this script exits 0 WITHOUT writing, so
+the previous dated reading stands. A partial success (some sources up, some
+down) keeps the fresh sources and carries the stale values forward, each
+still showing the date it was actually read.
 
 Stdlib only. Run from anywhere: paths resolve relative to this file.
 """
@@ -27,13 +30,13 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import render_assets  # noqa: E402  (shared templates — themes can never drift)
+import render_assets  # noqa: E402  (one renderer for both scripts)
 
 ROOT = Path(__file__).resolve().parent.parent
 SOUNDINGS = ROOT / "assets" / "soundings.json"
 README = ROOT / "README.md"
-ARCHIVAL_CAVEAT = ("\n<sub>Day-one panel shows an archival estimate; "
-                   "the first automated sounding replaces it.</sub>\n")
+# The README sentence that restates the readings sits between these markers.
+LINE_START, LINE_END = "<!-- readings:start -->", "<!-- readings:end -->"
 
 # The _DBO endpoints were retired in 2025 (they now answer 404); ddapi20 is
 # their successor, with locations addressed by Code alone.
@@ -170,7 +173,8 @@ def find_monza_gauge():
 
 
 def fetch_rain():
-    """Return (station_name, 30_day_total_mm, daily_totals_mm) for Monza."""
+    """Return (station_name, 30_day_total_mm, daily_totals_mm, days) for
+    Monza, where days are the ISO dates the daily totals belong to."""
     sensor, name = find_monza_gauge()
     since = (datetime.now(timezone.utc) - timedelta(days=31)).strftime(
         "%Y-%m-%dT00:00:00.000")
@@ -201,7 +205,7 @@ def fetch_rain():
     if len(days) < 7:
         raise ValueError(f"only {len(days)} days of Monza rain readings")
     daily = [round(per_day[d], 1) for d in days]
-    return name, round(sum(daily), 1), daily
+    return name, round(sum(daily), 1), daily, days
 
 
 def fetch_co2():
@@ -239,24 +243,18 @@ def fetch_co2():
 
 
 def sync_readme(data):
-    """Best-effort: keep the README's alt text truthful under total image
-    failure, and drop the day-one archival caveat once real data flows.
-    Never raises; a failed sync only means slightly staler prose."""
+    """Best-effort: rewrite the README sentence that restates the readings
+    as text. Never raises; a failed sync only means a slightly staler
+    sentence under figures that are themselves up to date."""
     try:
-        import re
         md = README.read_text(encoding="utf-8")
-        rain = data.get("rain")
-        rain_alt = (f"rain at Monza {rain['total_30d']:.0f} mm over 30 days; "
-                    if rain else "")
-        alt = (f"Surface conditions {data['reading_date']}: Rhine discharge at "
-               f"Lobith {data['rhine']['latest']:,.0f} m3/s, 30-day sounding; "
-               f"{rain_alt}atmospheric CO2 {data['co2']['latest']:.1f} ppm, "
-               f"NOAA global trend.")
-        new_md, n = re.subn(r'(alt=")Surface conditions [^"]*(")',
-                            lambda m: m.group(1) + alt + m.group(2), md)
-        if n == 1:
-            md = new_md
-        md = md.replace(ARCHIVAL_CAVEAT, "\n")
+        head, start, rest = md.partition(LINE_START)
+        _, end, tail = rest.partition(LINE_END)
+        if not (start and end):
+            print("reading: README markers not found; sentence left as-is")
+            return
+        md = (head + LINE_START + "\n" + render_assets.readings_line(data)
+              + "\n" + LINE_END + tail)
         README.write_text(md, encoding="utf-8")
     except Exception as exc:  # noqa: BLE001 — cosmetic sync only
         print(f"reading: README sync skipped ({exc})")
@@ -290,29 +288,26 @@ def main():
                              "station": "Lobith", "quantity": "Q",
                              "unit": "m3/s", "sounded": today}
         if fresh["rain"] is not None:
-            station, total, daily = fresh["rain"]
+            station, total, daily, days = fresh["rain"]
             data["rain"] = {"station": station, "total_30d": total,
-                            "daily": daily, "unit": "mm",
+                            "daily": daily, "days": days, "unit": "mm",
                             "source": "ARPA Lombardia", "sounded": today}
         if fresh["co2"] is not None:
             latest, monthly = fresh["co2"]
             data["co2"] = {"latest": latest, "monthly": monthly,
                            "source": "NOAA GML global trend", "sounded": today}
-        data["archival"] = False
+        data.pop("archival", None)   # day-one flag, no longer used
         data["reading_date"] = today
 
         # Render FIRST — if the merged data can't produce valid SVGs
         # (e.g. a hand-mangled prior file), nothing is written at all.
-        svgs = {theme: render_assets.render_surface(p, theme, data)
-                for theme, p in render_assets.PALETTES.items()}
+        svgs = render_assets.render_all(data)
     except Exception as exc:  # noqa: BLE001 — fail-soft by contract
         print(f"reading: could not compose reading ({exc}); prior log stands")
         return 0
 
     SOUNDINGS.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
-    for theme, svg in svgs.items():
-        (ROOT / "assets" / f"surface-conditions-{theme}.svg").write_text(
-            svg, encoding="utf-8")
+    render_assets.write_all(svgs)
     sync_readme(data)
     print(f"reading: logged {data['reading_date']}")
     return 0

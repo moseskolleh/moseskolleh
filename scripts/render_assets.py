@@ -1,542 +1,324 @@
 #!/usr/bin/env python3
-"""Render every SVG asset for the BOREHOLE MKS-01 profile README.
+"""Render the SVG figures for the profile README.
 
-Single source of truth: both themes (light "field log", dark "night survey")
-are generated from one palette dict and one set of drawing functions, so the
-two modes can never drift. Hand-editing the SVGs in assets/ is forbidden —
-edit this script and re-run it.
+Two figures, each in a light and a dark version drawn from one palette
+dict and one set of functions, so the two themes cannot drift apart:
+
+  banner-{theme}.svg    the name, under a hyetograph of the last 30 days
+                        of rain at Monza (bars hang from the top, the way
+                        hydrologists draw rainfall)
+  readings-{theme}.svg  two stat tiles: Rhine discharge at Lobith and
+                        atmospheric CO2, each with a small trend line
+
+Both are drawn from assets/soundings.json, which scripts/update_readings.py
+refreshes every morning. Do not edit the SVGs by hand: change this script
+and run it again.
+
+Design notes
+  - Transparent background, GitHub's own text colours and system font, so
+    the figures sit on the page instead of in a box.
+  - Type is sized for a README column that scales the 840-unit canvas down
+    to about 340 px on a phone: the name and the headline values stay
+    legible there; the small labels are also given as plain text in the
+    README (see readings_line).
+  - Every value shows the date it was actually read. A source that is down
+    therefore shows an older date, never a number that only looks fresh.
 
 Usage:
-    python3 scripts/render_assets.py            # render everything
-    python3 scripts/render_assets.py --surface  # surface-conditions panel only
+    python3 scripts/render_assets.py
 """
 
 import json
-import sys
+from datetime import date
 from pathlib import Path
 from xml.sax.saxutils import escape
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
 
-MONO = "Courier New, Courier, monospace"
+W = 840
+SANS = ("-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', "
+        "Helvetica, Arial, sans-serif")
 
+# Text and rule colours follow GitHub's light and dark themes. The two data
+# colours are a validated pair (colour-blind separation and 3:1 contrast on
+# both surfaces): blue for water, orange for the atmosphere.
 PALETTES = {
     "light": {
-        "bg": "#FAF6EF",       # field-log paper
-        "ink": "#22303A",
-        "water": "#1272B6",
-        "laterite": "#C4552D",  # Sierra Leone soil
-        "green": "#3E7C4F",
-        "rule": "#D8D2C4",
-        "faint": "#68757F",
-        "plate": "#F3EDE0",     # label-plate fill, slightly deeper than paper
+        "surface": "#ffffff",
+        "fg": "#1f2328",
+        "sub": "#59636e",
+        "rule": "#d1d9e0",
+        "water": "#2a78d6",
+        "air": "#eb6834",
     },
     "dark": {
-        "bg": "#0D141C",        # night monitoring station
-        "ink": "#D7E3E0",
-        "water": "#52C7EA",
-        "laterite": "#E58B5B",
-        "green": "#74C48F",
-        "rule": "#2A3A47",
-        "faint": "#748896",
-        "plate": "#131E29",
+        "surface": "#0d1117",
+        "fg": "#f0f6fc",
+        "sub": "#9198a1",
+        "rule": "#3d444d",
+        "water": "#3987e5",
+        "air": "#d95926",
     },
 }
 
-STRATA = [
-    {
-        "n": 1,
-        "depth": "0.0 – 1.0 m",
-        "label": "TOPSOIL — PhD RESEARCH",
-        "sub": "URBAN FLOOD RISK · 2026–29 · FRESHLY DEPOSITED",
-        "zone": "SAMPLE ZONE I",
-        "texture": "rain",
-        "tint": "water",
-    },
-    {
-        "n": 2,
-        "depth": "1.0 – 2.0 m",
-        "label": "SUBSOIL — SUSTAINABLE AI",
-        "sub": "2025–26 · STILL FORMING",
-        "zone": "SAMPLE ZONE II",
-        "texture": "stipple",
-        "tint": "green",
-    },
-    {
-        "n": 3,
-        "depth": "2.0 – 3.0 m",
-        "label": "GRAVEL — EXPERIENCE",
-        "sub": "TRANSPORTED CLASTS · WELL-ROUNDED",
-        "zone": "SAMPLE ZONE III",
-        "texture": "gravel",
-        "tint": "ink",
-    },
-    {
-        "n": 4,
-        "depth": "3.0 – 4.5 m",
-        "label": "ALLUVIUM — WATER & WEST AFRICA",
-        "sub": "WATER-LAIN DEPOSITS",
-        "zone": "SAMPLE ZONE IV",
-        "texture": "waves",
-        "tint": "water",
-    },
-    {
-        "n": 5,
-        "depth": "4.5 – 6.0 m",
-        "label": "CONSOLIDATED STRATA — DATA ANALYTICS",
-        "sub": "2023–24 · TIGHTLY LAMINATED",
-        "zone": "SAMPLE ZONE V",
-        "texture": "laminae",
-        "tint": "ink",
-    },
-    {
-        "n": 6,
-        "depth": "6 – 12 m",
-        "label": "AQUIFER — EDUCATION",
-        "sub": "RECHARGED ON THREE CONTINENTS",
-        "zone": "SAMPLE ZONE VI",
-        "texture": "porous",
-        "tint": "water",
-    },
-    {
-        "n": 7,
-        "depth": "12 m +",
-        "label": "BEDROCK — SIERRA LEONE",
-        "sub": "CRYSTALLINE BASEMENT · REFUSAL",
-        "zone": "END OF HOLE",
-        "texture": "crosshatch",
-        "tint": "laterite",
-    },
-]
 
+# --------------------------------------------------------------------------
+# Small helpers
+# --------------------------------------------------------------------------
 
-def svg_open(w, h, title):
+def svg_open(w, h, title, style=""):
     attr_title = escape(title, {'"': "&quot;"})
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '
-        f'width="{w}" height="{h}" role="img" aria-label="{attr_title}">\n'
+        f'width="{w}" height="{h}" role="img" aria-label="{attr_title}" '
+        f'font-family="{SANS}">\n'
         f"<title>{escape(title)}</title>\n"
+        + (f"<style>{style}</style>\n" if style else "")
     )
 
 
-def text(x, y, s, size, p, color="ink", weight="normal", spacing=None,
-         anchor="start", opacity=None, text_length=None):
-    attrs = (
-        f'x="{x}" y="{y}" font-family="{MONO}" font-size="{size}" '
-        f'fill="{p[color]}" font-weight="{weight}" text-anchor="{anchor}"'
-    )
+def text(x, y, s, size, fill, weight=400, anchor="start", spacing=None):
+    attrs = (f'x="{x}" y="{y}" font-size="{size}" fill="{fill}" '
+             f'font-weight="{weight}" text-anchor="{anchor}"')
     if spacing is not None:
         attrs += f' letter-spacing="{spacing}"'
-    if opacity is not None:
-        attrs += f' opacity="{opacity}"'
-    if text_length is not None:
-        attrs += f' textLength="{text_length}" lengthAdjust="spacingAndGlyphs"'
-    return f"<text {attrs}>{escape(s)}</text>\n"
+    return f"<text {attrs}>{s}</text>\n"
 
 
-def frame(w, h, p):
-    """Double hairline border, instrument-plate style."""
-    return (
-        f'<rect x="0" y="0" width="{w}" height="{h}" fill="{p["bg"]}"/>\n'
-        f'<rect x="6.5" y="6.5" width="{w - 13}" height="{h - 13}" fill="none" '
-        f'stroke="{p["ink"]}" stroke-width="1.5"/>\n'
-        f'<rect x="12.5" y="12.5" width="{w - 25}" height="{h - 25}" fill="none" '
-        f'stroke="{p["rule"]}" stroke-width="1"/>\n'
-    )
+def rule(x1, x2, y, p):
+    return (f'<line x1="{x1}" y1="{y}" x2="{x2}" y2="{y}" '
+            f'stroke="{p["rule"]}" stroke-width="1"/>\n')
 
 
-# --------------------------------------------------------------------------
-# 1. Masthead header
-# --------------------------------------------------------------------------
+def nice_date(iso):
+    """'2026-11-09' -> '9 Nov 2026'."""
+    d = date.fromisoformat(iso[:10])
+    return f"{d.day} {d.strftime('%b %Y')}"
 
-def render_header(p, theme):
-    w, h = 1200, 260
-    s = svg_open(w, h, "Borehole log MKS-01 — Moses Kolleh Sesay. Site: "
-                       "Pavia, Italy. Logged across Freetown, Changsha, Bonn, "
-                       "Wageningen, Amsterdam and Pavia. Purpose: water, "
-                       "climate, data.")
-    s += frame(w, h, p)
 
-    # Wordmark block, left
-    s += text(48, 78, "BOREHOLE LOG · MKS-01", 28, p, color="laterite",
-              weight="bold", spacing=5)
-    s += text(48, 142, "MOSES KOLLEH SESAY", 56, p, weight="bold",
-              text_length=640)
-    s += text(48, 178, "HYDROGEOLOGIST → FLOOD-RISK RESEARCHER", 19, p,
-              color="faint", spacing=2)
+def short_date(iso):
+    """'2026-10-30' -> '30 Oct'."""
+    d = date.fromisoformat(iso[:10])
+    return f"{d.day} {d.strftime('%b')}"
 
-    # Metadata rows
-    s += f'<line x1="48" y1="198" x2="740" y2="198" stroke="{p["rule"]}" stroke-width="1"/>\n'
-    s += text(48, 221, "SITE: PAVIA IT · 45.19° N 9.16° E · ON THE TICINO, PO PLAIN", 17,
-              p, color="faint")
-    s += text(48, 243, "ROUTE: FREETOWN → CHANGSHA → BONN → WAGENINGEN → AMSTERDAM → PAVIA",
-              17, p, color="faint")
 
-    # Drill derrick over the water, right — the page's only looping motion
-    ink, water = p["ink"], p["water"]
-    s += f'<g stroke="{ink}" stroke-width="2" fill="none" stroke-linecap="round">\n'
-    s += '<path d="M905 190 L965 58 L1025 190"/>\n'                    # legs
-    s += '<path d="M921 155 L1009 155 M934 126 L996 126 M947 97 L983 97"/>\n'
-    s += '<path d="M921 155 L996 126 M1009 155 L934 126"/>\n'          # braces
-    s += f'<rect x="953" y="46" width="24" height="14" stroke="{ink}"/>\n'  # crown
-    s += '<path d="M965 60 L965 190"/>\n'                              # string
-    s += f'<path d="M782 190 L1148 190" stroke-width="2.5"/>\n'        # ground
-    s += "</g>\n"
-    # drill bit below ground
-    s += f'<path d="M958 190 L972 190 L965 206 Z" fill="{ink}"/>\n'
-    # water lines, animated drift
-    s += '<g>\n'
-    for i, y in enumerate((216, 228, 240)):
-        s += (
-            f'<path d="M800 {y} q 22 -7 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0 t 44 0" '
-            f'fill="none" stroke="{water}" stroke-width="2" opacity="{0.9 - i * 0.25}"/>\n'
-        )
-    s += ('<animateTransform attributeName="transform" type="translate" '
-          'values="0 0; -8 0; 0 0; 8 0; 0 0" dur="8s" repeatCount="indefinite"/>\n')
-    s += "</g>\n"
+def read_on(block, data):
+    """The date a value was actually read (falls back to the log's date)."""
+    return block.get("sounded") or data["reading_date"]
 
-    s += text(w - 24, 34, "FIG. 1 — MASTHEAD · SHEET 1 OF 1", 13, p,
-              color="faint", anchor="end", spacing=1.5)
-    s += "</svg>\n"
-    return s
+
+def num(v, decimals=0):
+    return f"{v:,.{decimals}f}"
 
 
 # --------------------------------------------------------------------------
-# 2. Daily readings panel — Rhine discharge and atmospheric CO2
+# 1. Banner: the name, under the last 30 days of rain at Monza
 # --------------------------------------------------------------------------
 
-def _month_label(iso):
-    """'2026-07' or '2026-07-06' -> 'JUL 2026'."""
-    from datetime import datetime
-    fmt = "%Y-%m" if len(iso) == 7 else "%Y-%m-%d"
-    return datetime.strptime(iso, fmt).strftime("%b %Y").upper()
+BANNER_STYLE = (
+    "@media (prefers-reduced-motion: no-preference){"
+    ".b{transform-box:fill-box;transform-origin:50% 0;"
+    "animation:fall .8s cubic-bezier(.2,.7,.2,1) both}"
+    "@keyframes fall{from{transform:scaleY(0)}}}"
+)
 
 
-def render_surface(p, theme, data):
-    w, h = 1200, 180
-    rhine = data["rhine"]
-    co2 = data["co2"]
-    rain = data.get("rain")   # absent until the first Monza sounding
-    archival = data.get("archival", True)
-    date_label = data["reading_date"]
+def _hanging_bar(x, y0, w, h, fill, delay):
+    """A bar hanging from the baseline y0: square where it meets the
+    baseline, rounded at the data end."""
+    r = min(4.0, w / 2, h)
+    d = (f"M{x:.1f} {y0} h{w:.1f} v{h - r:.1f} "
+         f"a{r:.1f} {r:.1f} 0 0 1 -{r:.1f} {r:.1f} h-{w - 2 * r:.1f} "
+         f"a{r:.1f} {r:.1f} 0 0 1 -{r:.1f} -{r:.1f} Z")
+    return (f'<path class="b" style="animation-delay:{delay}ms" d="{d}" '
+            f'fill="{fill}"/>\n')
 
-    def source_line(default, sounded):
-        """A field log never lies — a value not refreshed on reading day is
-        labelled with the date it was actually sounded."""
-        if archival or not sounded or sounded == date_label:
-            return default, "faint"
-        return f"CARRIED FORWARD · {sounded}", "laterite"
 
-    rain_alt = (f"rain at Monza {rain['total_30d']:.0f} mm over 30 days; "
-                if rain else "")
-    s = svg_open(w, h, f"Surface conditions panel. Rhine discharge at Lobith "
-                       f"{rhine['latest']:,.0f} cubic metres per second; "
-                       f"{rain_alt}atmospheric CO2 {co2['latest']:.1f} ppm "
-                       f"(NOAA global trend); reading dated {date_label}.")
-    s += frame(w, h, p)
+def render_banner(p, theme, data):
+    h = 232
+    rain = data.get("rain")
+    base_y, max_h = 30, 74        # baseline of the hyetograph, tallest bar
 
-    # four cells: Rhine, Monza rain, CO2, the date stamp
-    for x in (300, 600, 900):
-        s += f'<line x1="{x}" y1="20" x2="{x}" y2="{h - 20}" stroke="{p["rule"]}" stroke-width="1"/>\n'
-
-    # ---- Cell 1: Rhine discharge at Lobith --------------------------------
-    s += text(32, 48, "RHINE @ LOBITH", 15, p, color="faint", spacing=2)
-    s += text(32, 90, f"{rhine['latest']:,.0f}".replace(",", " ") + " m³/s", 38,
-              p, color="water", weight="bold")
-
-    series = [float(v) for v in rhine["series"][-30:]]
-    # fixed reference band, auto-expanded so a flood never renders as a clamp
-    lo = min(800.0, min(series) * 0.95)
-    hi = max(4200.0, max(series) * 1.06)
-    bx0, bx1, by0, by1 = 32, 240, 106, 150   # sparkline box
-    def sy(v):
-        return by1 - (float(v) - lo) / (hi - lo) * (by1 - by0)
-    # normal-range guides (≈1 100 – 4 000 m³/s)
-    for guide, glabel in ((4000, "4 000"), (1100, "1 100")):
-        gy = sy(guide)
-        s += (f'<line x1="{bx0}" y1="{gy:.1f}" x2="{bx1}" y2="{gy:.1f}" '
-              f'stroke="{p["rule"]}" stroke-width="1" stroke-dasharray="3 4"/>\n')
-        s += text(286, round(gy + 4, 1), glabel, 11, p, color="faint",
-                  anchor="end")
-    if len(series) > 1:
-        step = (bx1 - bx0) / (len(series) - 1)
-        pts = " ".join(f"{bx0 + i * step:.1f},{sy(v):.1f}" for i, v in enumerate(series))
-        s += (f'<polyline points="{pts}" fill="none" stroke="{p["water"]}" '
-              f'stroke-width="2.5" stroke-linejoin="round"/>\n')
-        lx = bx0 + (len(series) - 1) * step
-        s += f'<circle cx="{lx:.1f}" cy="{sy(series[-1]):.1f}" r="4" fill="{p["water"]}"/>\n'
-    r_line, r_color = source_line("30 DAYS · RIJKSWATERSTAAT",
-                                  rhine.get("sounded"))
-    s += text(32, 166, r_line, 11, p, color=r_color, spacing=1.2)
-
-    # ---- Cell 2: rain at Monza, where the PhD is set -----------------------
-    s += text(332, 48, "RAIN @ MONZA", 15, p, color="faint", spacing=2)
     if rain:
         total = rain["total_30d"]
-        s += text(332, 90, f"{total:.0f} mm", 38, p, color="water",
-                  weight="bold")
-        daily = [float(v) for v in rain["daily"][-30:]]
-        top = max(20.0, max(daily))   # 20 mm/day scale unless a storm needs more
-        bar_w = 208 / 30
+        title = (f"Moses Kolleh Sesay, hydrogeologist turned flood-risk "
+                 f"researcher, IUSS Pavia. Above the name, the last 30 days "
+                 f"of rain at Monza drawn as bars hanging from the top: "
+                 f"{num(total)} mm in total, read "
+                 f"{nice_date(read_on(rain, data))}.")
+    else:
+        title = ("Moses Kolleh Sesay, hydrogeologist turned flood-risk "
+                 "researcher, IUSS Pavia.")
+    s = svg_open(W, h, title, BANNER_STYLE)
+
+    # ---- hyetograph ------------------------------------------------------
+    s += text(0, 17, "Rain over Monza, last 30 days", 13, p["sub"])
+    if rain:
+        s += text(W, 17,
+                  f'<tspan fill="{p["fg"]}" font-weight="600">'
+                  f'{num(total)} mm</tspan> · read '
+                  f'{nice_date(read_on(rain, data))}',
+                  13, p["sub"], anchor="end")
+    else:
+        s += text(W, 17, "awaiting the first reading", 13, p["sub"],
+                  anchor="end")
+    s += rule(0, W, base_y - 0.5, p)
+
+    # one tick per day, so the axis reads as 30 days even in a dry month
+    slot = W / 30
+    for i in range(30):
+        x = i * slot + slot / 2
+        s += (f'<line x1="{x:.1f}" y1="{base_y}" x2="{x:.1f}" '
+              f'y2="{base_y + 4}" stroke="{p["rule"]}" stroke-width="1"/>\n')
+
+    daily = [float(v) for v in (rain["daily"][-30:] if rain else [])]
+    if daily and max(daily) > 0:
+        # 20 mm/day fills the scale unless a storm needs more, so a month
+        # of drizzle is not drawn as a month of downpours
+        top = max(20.0, max(daily))
+        bar_w = 12
+        offset = 30 - len(daily)   # a short series is right-aligned on today
         for i, v in enumerate(daily):
-            bar_h = v / top * 44
-            if bar_h < 0.5:
+            if v <= 0:
                 continue
-            s += (f'<rect x="{332 + i * bar_w:.1f}" y="{150 - bar_h:.1f}" '
-                  f'width="{bar_w - 2:.1f}" height="{bar_h:.1f}" '
-                  f'fill="{p["water"]}" opacity="0.75"/>\n')
-        s += (f'<line x1="332" y1="150.5" x2="540" y2="150.5" '
-              f'stroke="{p["rule"]}" stroke-width="1"/>\n')
-        m_line, m_color = source_line("30-DAY TOTAL · ARPA LOMBARDIA",
-                                      rain.get("sounded"))
-        s += text(332, 166, m_line, 11, p, color=m_color, spacing=1.2)
-    else:
-        s += text(332, 90, "— mm", 38, p, color="faint", weight="bold")
-        s += text(332, 130, "AWAITING FIRST SOUNDING", 12, p, color="faint",
-                  spacing=1.2)
-        s += text(332, 166, "ARPA LOMBARDIA RAIN GAUGE", 11, p, color="faint",
-                  spacing=1.2)
+            bar_h = max(1.5, v / top * max_h)
+            x = (i + offset) * slot + (slot - bar_w) / 2
+            s += _hanging_bar(x, base_y, bar_w, bar_h, p["water"],
+                              (i + offset) * 22)
+        # one label only: the wettest day
+        peak = max(range(len(daily)), key=lambda i: daily[i])
+        px = (peak + offset) * slot + slot / 2
+        py = base_y + max(1.5, daily[peak] / top * max_h) + 17
+        label = f"{num(daily[peak])} mm"
+        days = rain.get("days") or []
+        if len(days) == len(rain["daily"]):
+            label += f" on {short_date(days[-30:][peak])}"
+        anchor = "middle"
+        if px < 70:
+            px, anchor = (peak + offset) * slot + 8, "start"
+        elif px > W - 70:
+            px, anchor = (peak + offset + 1) * slot - 8, "end"
+        s += text(f"{px:.1f}", f"{py:.1f}", label, 12, p["sub"],
+                  anchor=anchor)
+    elif rain:
+        s += text(0, base_y + 22, "No rain recorded", 12, p["sub"])
 
-    # ---- Cell 3: atmospheric CO2 -------------------------------------------
-    s += text(632, 48, "ATMOSPHERE — CO₂", 15, p, color="faint", spacing=2)
-    s += text(632, 90, f"{co2['latest']:.1f} ppm", 38, p, color="green",
-              weight="bold")
-    monthly = co2["monthly"][-12:]
-    if monthly:
-        mlo, mhi = min(monthly), max(monthly)
-        span = (mhi - mlo) or 1.0
-        for i, v in enumerate(monthly):
-            bar_h = 8 + (v - mlo) / span * 34
-            bx = 632 + i * 19
-            s += (f'<rect x="{bx}" y="{150 - bar_h:.1f}" width="11" '
-                  f'height="{bar_h:.1f}" fill="{p["green"]}" opacity="{0.35 + 0.5 * i / 11:.2f}"/>\n')
-    c_line, c_color = source_line("NOAA GLOBAL · 12 MONTHS",
-                                  co2.get("sounded"))
-    s += text(632, 166, c_line, 11, p, color=c_color, spacing=1.2)
-
-    # ---- Cell 4: the date stamp --------------------------------------------
-    s += text(932, 48, "READING TAKEN", 15, p, color="faint", spacing=2)
-    s += text(932, 90, date_label, 34, p, weight="bold")
-    if archival:
-        s += text(932, 120, f"ARCHIVAL — {_month_label(date_label)}",
-                  15, p, color="laterite", weight="bold", spacing=1)
-        s += text(932, 142, "AWAITING FIRST SOUNDING", 12, p,
-                  color="faint", spacing=1)
-    else:
-        s += text(932, 120, "CONDITIONS AT LOGGING", 13, p,
-                  color="faint", spacing=1)
-        s += text(932, 142, "TAKEN DAILY · 05:15 UTC", 13, p, color="faint",
-                  spacing=1)
-
-    # four cells leave no room up top, so this sheet signs off bottom-right
-    s += text(w - 28, 166, "FIG. 2 — SURFACE CONDITIONS", 11, p, color="faint",
-              anchor="end", spacing=1.2)
+    # ---- name ------------------------------------------------------------
+    s += text(-2, 182, "Moses Kolleh Sesay", 46, p["fg"], weight=600,
+              spacing="-0.6")
+    s += text(0, 214,
+              "Hydrogeologist turned flood-risk researcher · IUSS Pavia",
+              17, p["sub"])
     s += "</svg>\n"
     return s
 
 
 # --------------------------------------------------------------------------
-# 3. Strata dividers
+# 2. Readings: Rhine discharge and atmospheric CO2
 # --------------------------------------------------------------------------
 
-def _texture_defs(kind, uid, p, tint):
-    c = p[tint]
-    if kind == "stipple":
-        return (
-            f'<pattern id="{uid}" width="26" height="18" patternUnits="userSpaceOnUse">'
-            f'<circle cx="5" cy="5" r="1.7" fill="{c}"/>'
-            f'<circle cx="17" cy="12" r="1.4" fill="{c}"/>'
-            f'<circle cx="23" cy="4" r="1.2" fill="{c}"/>'
-            f"</pattern>"
-        )
-    if kind == "rain":
-        return (
-            f'<pattern id="{uid}" width="22" height="22" patternUnits="userSpaceOnUse">'
-            f'<path d="M7 2 L4 10 M18 12 L15 20" stroke="{c}" stroke-width="1.5" '
-            f'stroke-linecap="round"/>'
-            f"</pattern>"
-        )
-    if kind == "gravel":
-        return (
-            f'<pattern id="{uid}" width="40" height="28" patternUnits="userSpaceOnUse">'
-            f'<ellipse cx="9" cy="8" rx="4.5" ry="3" fill="none" stroke="{c}" stroke-width="1.2"/>'
-            f'<ellipse cx="27" cy="19" rx="3.4" ry="2.4" fill="none" stroke="{c}" stroke-width="1.2"/>'
-            f'<circle cx="33" cy="6" r="1.5" fill="{c}"/>'
-            f'<circle cx="15" cy="22" r="1.3" fill="{c}"/>'
-            f"</pattern>"
-        )
-    if kind == "waves":
-        return (
-            f'<pattern id="{uid}" width="64" height="16" patternUnits="userSpaceOnUse">'
-            f'<path d="M0 8 Q 16 2 32 8 T 64 8" fill="none" stroke="{c}" stroke-width="1.4"/>'
-            f"</pattern>"
-        )
-    if kind == "laminae":
-        return (
-            f'<pattern id="{uid}" width="10" height="7" patternUnits="userSpaceOnUse">'
-            f'<line x1="0" y1="3.5" x2="10" y2="3.5" stroke="{c}" stroke-width="1"/>'
-            f"</pattern>"
-        )
-    if kind == "porous":
-        return (
-            f'<pattern id="{uid}" width="34" height="24" patternUnits="userSpaceOnUse">'
-            f'<circle cx="8" cy="7" r="2.6" fill="none" stroke="{c}" stroke-width="1.2"/>'
-            f'<circle cx="25" cy="17" r="2.2" fill="none" stroke="{c}" stroke-width="1.2"/>'
-            f"</pattern>"
-        )
-    # crosshatch
-    return (
-        f'<pattern id="{uid}" width="14" height="14" patternUnits="userSpaceOnUse">'
-        f'<path d="M0 14 L14 0 M-3 3 L3 -3 M11 17 L17 11" stroke="{c}" stroke-width="1"/>'
-        f'<path d="M0 0 L14 14 M11 -3 L17 3 M-3 11 L3 17" stroke="{c}" stroke-width="0.7" opacity="0.6"/>'
-        f"</pattern>"
-    )
+def _trend(values, x0, x1, y0, y1, color, p, peak_fmt=None):
+    """A 2 px trend line scaled to its own range, with an end marker and,
+    when peak_fmt is given, a single label on the highest point (the
+    headline value names the end)."""
+    vals = [float(v) for v in values]
+    if len(vals) < 2:
+        return ""
+    lo, hi = min(vals), max(vals)
+    span = (hi - lo) or 1.0
+    step = (x1 - x0) / (len(vals) - 1)
+
+    def xy(i):
+        y = (y0 + y1) / 2 if hi == lo else y1 - (vals[i] - lo) / span * (y1 - y0)
+        return x0 + i * step, y
+
+    pts = " ".join(f"{x:.1f},{y:.1f}" for x, y in map(xy, range(len(vals))))
+    out = (f'<polyline points="{pts}" fill="none" stroke="{color}" '
+           f'stroke-width="2" stroke-linejoin="round" '
+           f'stroke-linecap="round"/>\n')
+    ex, ey = xy(len(vals) - 1)
+    out += (f'<circle cx="{ex:.1f}" cy="{ey:.1f}" r="4.5" fill="{color}" '
+            f'stroke="{p["surface"]}" stroke-width="2"/>\n')
+    peak = max(range(len(vals)), key=lambda i: vals[i])
+    if peak_fmt and hi > lo and peak < len(vals) - 2:
+        px, py = xy(peak)
+        anchor = "start" if px < x0 + 24 else "middle"
+        out += text(f"{px:.1f}", f"{py - 9:.1f}", peak_fmt(hi), 12, p["sub"],
+                    anchor=anchor)
+    return out
 
 
-def render_stratum(p, theme, spec):
-    w, h = 1200, 110
-    uid = f"tx{spec['n']}{theme[0]}"
-    title = f"Stratum {spec['n']} divider: {spec['label']}, depth {spec['depth']}."
-    s = svg_open(w, h, title)
-    s += f"<defs>{_texture_defs(spec['texture'], uid, p, spec['tint'])}</defs>\n"
-    s += frame(w, h, p)
+def _tile(x, w, p, label, value, unit, notes, chart):
+    s = rule(x, x + w, 0.5, p)
+    s += text(x, 27, label, 13, p["sub"])
+    s += text(x, 70,
+              f'{value}<tspan font-size="15" font-weight="400" '
+              f'fill="{p["sub"]}" dx="6">{unit}</tspan>',
+              36, p["fg"], weight=600, spacing="-0.4")
+    for i, note in enumerate(notes):
+        s += text(x, 96 + i * 18, note, 12, p["sub"])
+    return s + chart
 
-    # texture band
-    s += f'<rect x="90" y="13" width="{w - 103}" height="{h - 26}" fill="url(#{uid})" opacity="0.5"/>\n'
 
-    # depth ruler, left
-    s += f'<line x1="90" y1="13" x2="90" y2="{h - 13}" stroke="{p["ink"]}" stroke-width="1.5"/>\n'
-    for i in range(0, 11):
-        y = 13 + i * (h - 26) / 10
-        tick = 12 if i % 5 == 0 else 7
-        s += (f'<line x1="{90 - tick}" y1="{y:.1f}" x2="90" y2="{y:.1f}" '
-              f'stroke="{p["ink"]}" stroke-width="1"/>\n')
-    s += text(24, 34, "DEPTH", 11, p, color="faint", spacing=1)
-    s += text(24, 52, spec["depth"].split("–")[0].strip() if "–" in spec["depth"] else spec["depth"],
-              13, p, weight="bold")
-    s += text(24, 92, spec["depth"].split("–")[1].strip() if "–" in spec["depth"] else "",
-              13, p, weight="bold")
+def render_readings(p, theme, data):
+    h = 128
+    rhine, co2 = data["rhine"], data["co2"]
+    title = (f"Rhine discharge at Lobith {num(rhine['latest'])} cubic metres "
+             f"per second, read {nice_date(read_on(rhine, data))}, with its "
+             f"30-day trend. Atmospheric CO2 {num(co2['latest'], 1)} parts "
+             f"per million, read {nice_date(read_on(co2, data))}, with its "
+             f"12-month trend.")
+    s = svg_open(W, h, title)
+    tile_w, gap = 396, 48
+    x2 = tile_w + gap
 
-    # label plate
-    label_w = max(30 + len(spec["label"]) * 20, 40 + len(spec["sub"]) * 10)
-    s += (f'<rect x="118" y="26" width="{label_w}" height="58" fill="{p["plate"]}" '
-          f'stroke="{p["rule"]}" stroke-width="1"/>\n')
-    s += text(134, 58, spec["label"], 32, p, weight="bold")
-    s += text(134, 76, spec["sub"], 14, p, color="faint", spacing=1.5)
-
-    # zone tag, right
-    s += text(w - 28, 62, spec["zone"], 15, p, color=spec["tint"], anchor="end",
-              weight="bold", spacing=2)
-
-    # water table marker on the aquifer stratum
-    if spec["texture"] == "porous":
-        s += (f'<line x1="90" y1="90" x2="{w - 13}" y2="90" stroke="{p["water"]}" '
-              f'stroke-width="1.6" stroke-dasharray="10 5"/>\n')
-        s += (f'<path d="M1022 76 L1040 76 L1031 89 Z" fill="none" '
-              f'stroke="{p["water"]}" stroke-width="2"/>\n')
-        s += text(1050, 86, "WATER TABLE", 12, p, color="water", spacing=1.5)
-
+    s += _tile(
+        0, tile_w, p, "Rhine discharge at Lobith", num(rhine["latest"]),
+        "m³/s",
+        ["30 days · Rijkswaterstaat",
+         f"read {nice_date(read_on(rhine, data))}"],
+        _trend(rhine["series"][-30:], 250, tile_w - 8, 36, 112, p["water"],
+               p, num))
+    # The headline is NOAA's deseasonalised trend; the line is the monthly
+    # mean, which still carries the seasonal cycle. The line is therefore
+    # left unlabelled, so no number on it is read against the headline.
+    s += _tile(
+        x2, tile_w, p, "Atmospheric CO₂, global trend",
+        num(co2["latest"], 1), "ppm",
+        ["Line: 12 monthly means · NOAA",
+         f"read {nice_date(read_on(co2, data))}"],
+        _trend(co2["monthly"][-12:], x2 + 250, x2 + tile_w - 8, 36, 112,
+               p["air"], p))
     s += "</svg>\n"
     return s
 
 
 # --------------------------------------------------------------------------
-# 4. Drill path — recharge route across three continents
+# 3. The same readings as plain text, for the README
 # --------------------------------------------------------------------------
 
-def render_drill_path(p, theme):
-    w, h = 1200, 420
-    s = svg_open(w, h, "Recharge path, source to delta and back as rain: "
-                       "Freetown, Sierra Leone (Bintumani massif, 1945 m) to "
-                       "Changsha, China, to Wageningen and Amsterdam, the "
-                       "Netherlands, at sea level on the Normaal Amsterdams "
-                       "Peil datum; then the water cycle closes and falls "
-                       "again as rain on Pavia, Italy (77 m), on the Ticino "
-                       "in the Po plain.")
-    s += frame(w, h, p)
+def readings_line(data):
+    """One sentence of real text carrying the figures' numbers, so they stay
+    readable on a phone, by a screen reader, and if the images fail. A value
+    that was not refreshed on the day of the reading says when it was."""
+    day = data["reading_date"]
 
-    def ey(elev):  # elevation (m) -> y
-        return 340 - elev / 2000.0 * 250
+    def stale(block):
+        on = read_on(block, data)
+        return "" if on == day else f" (last read {nice_date(on)})"
 
-    # elevation gridlines
-    for elev in (2000, 1500, 1000, 500):
-        y = ey(elev)
-        s += (f'<line x1="80" y1="{y:.0f}" x2="{w - 40}" y2="{y:.0f}" '
-              f'stroke="{p["rule"]}" stroke-width="1" stroke-dasharray="2 6"/>\n')
-        s += text(72, y + 4, f"{elev}", 12, p, color="faint", anchor="end")
-    # sea level / NAP line
-    s += (f'<line x1="80" y1="340" x2="{w - 40}" y2="340" stroke="{p["water"]}" '
-          f'stroke-width="1.6" stroke-dasharray="10 5"/>\n')
-    s += text(w - 40, 358, "NAP · SEA LEVEL", 13, p, color="water", anchor="end",
-              spacing=1.5)
-    s += text(72, 344, "0 m", 12, p, color="faint", anchor="end")
-
-    fx, fy = 170, ey(1945)
-    cx, cy = 500, ey(44)
-    ax, ay = 820, ey(0)    # Amsterdam sits exactly on the datum named for it
-    px, py = 1080, ey(77)  # Pavia, on the Ticino just above the Po
-
-    # the descending path, source to delta
-    s += (f'<path d="M{fx} {fy:.0f} C 260 210, 420 320, {cx} {cy:.0f} '
-          f'S 720 {ay:.0f}, {ax} {ay:.0f}" fill="none" stroke="{p["ink"]}" '
-          f'stroke-width="2" stroke-dasharray="8 7"/>\n')
-
-    # the cycle closes: up from the delta, back down as rain on Pavia
-    s += (f'<path d="M{ax + 8} {ay - 6:.0f} C 900 300, 930 200, 1010 196" '
-          f'fill="none" stroke="{p["water"]}" stroke-width="2" '
-          f'stroke-dasharray="4 6"/>\n')
-    s += (f'<path d="M1012 204 Q1004 184 1026 180 Q1032 160 1056 166 '
-          f'Q1072 150 1092 166 Q1114 166 1110 186 Q1122 204 1100 206 Z" '
-          f'fill="{p["bg"]}" stroke="{p["water"]}" stroke-width="2" '
-          f'stroke-linejoin="round"/>\n')
-    for x in (1036, 1058, 1080, 1102):
-        s += (f'<line x1="{x}" y1="214" x2="{x - 8}" y2="{py - 18:.0f}" '
-              f'stroke="{p["water"]}" stroke-width="1.6" stroke-dasharray="6 8" '
-              f'stroke-linecap="round"/>\n')
-    s += text(w - 28, 392, "THE CYCLE CLOSES · BACK UPSTREAM AS RAIN", 12, p,
-              color="water", anchor="end", spacing=1.5)
-
-    # Source: the Bintumani massif — Sierra Leone's roof, where the rivers rise
-    s += f'<circle cx="{fx}" cy="{fy:.0f}" r="8" fill="{p["laterite"]}"/>\n'
-    s += text(fx + 22, fy - 14, "SOURCE — BINTUMANI MASSIF · 1 945 m", 20, p,
-              weight="bold")
-    s += text(fx + 22, fy + 10, "SIERRA LEONE · FREETOWN 8.48° N", 15, p,
-              color="laterite", spacing=1)
-    s += text(fx + 22, fy + 32, "BSc HONS GEOLOGY · FIRST CLASS", 13, p,
-              color="faint", spacing=1)
-
-    # Changsha — labels below the point (it sits near sea level)
-    s += f'<circle cx="{cx}" cy="{cy:.0f}" r="7" fill="{p["ink"]}"/>\n'
-    s += text(cx, cy + 34, "CHANGSHA · 28.2° N", 20, p, weight="bold",
-              anchor="middle")
-    s += text(cx, cy + 56, "MSc INDUSTRIAL ENGINEERING · HUNAN UNIVERSITY",
-              13, p, color="faint", spacing=1, anchor="middle")
-
-    # Wageningen / Amsterdam — stacked above, to the left of the delta point
-    s += f'<circle cx="{ax}" cy="{ay:.0f}" r="8" fill="{p["water"]}"/>\n'
-    s += text(ax - 18, ay - 104, "WAGENINGEN → AMSTERDAM · 52.37° N", 20, p,
-              weight="bold", anchor="end")
-    s += text(ax - 18, ay - 82, "NORMAAL AMSTERDAMS PEIL · 0 m", 15, p,
-              color="water", anchor="end", spacing=1)
-    s += text(ax - 18, ay - 62, "MSc ENVIRONMENTAL SCIENCES · WAGENINGEN UR",
-              13, p, color="faint", anchor="end", spacing=1)
-    s += (f'<line x1="{ax}" y1="{ay - 58:.0f}" x2="{ax}" y2="{ay - 14:.0f}" '
-          f'stroke="{p["rule"]}" stroke-width="1"/>\n')
-
-    # Pavia — where the rain lands; labels sit above the cloud
-    s += f'<circle cx="{px}" cy="{py:.0f}" r="8" fill="{p["green"]}"/>\n'
-    s += text(w - 28, 96, "PAVIA · 45.19° N", 20, p, weight="bold",
-              anchor="end")
-    s += text(w - 28, 118, "TICINO · PO PLAIN · 77 m", 15, p, color="green",
-              anchor="end", spacing=1)
-    s += text(w - 28, 138, "PhD · IUSS PAVIA · 2026–29", 13, p,
-              color="faint", anchor="end", spacing=1)
-
-    s += text(w - 24, 34, "FIG. 3 — RECHARGE PATH · SOURCE TO DELTA, BACK AS RAIN",
-              13, p, color="faint", anchor="end", spacing=1.5)
-    s += "</svg>\n"
-    return s
+    parts = []
+    rain = data.get("rain")
+    if rain:
+        parts.append(f"**{num(rain['total_30d'])} mm** of rain at Monza over "
+                     f"30 days{stale(rain)}")
+    rhine, co2 = data["rhine"], data["co2"]
+    parts.append(f"the Rhine at Lobith carrying **{num(rhine['latest'])} "
+                 f"m³/s**{stale(rhine)}")
+    parts.append(f"the global CO₂ trend at **{num(co2['latest'], 1)} ppm**"
+                 f"{stale(co2)}")
+    return f"Read on {nice_date(day)}: " + " · ".join(parts) + "."
 
 
 # --------------------------------------------------------------------------
@@ -546,30 +328,21 @@ def load_soundings():
         return json.load(f)
 
 
-def write(name, content):
+def render_all(data):
+    """Return {filename: svg} for every figure in both themes."""
+    out = {}
+    for theme, p in PALETTES.items():
+        out[f"banner-{theme}.svg"] = render_banner(p, theme, data)
+        out[f"readings-{theme}.svg"] = render_readings(p, theme, data)
+    return out
+
+
+def write_all(svgs):
     ASSETS.mkdir(exist_ok=True)
-    path = ASSETS / name
-    path.write_text(content, encoding="utf-8")
-    print(f"wrote {path.relative_to(ROOT)}")
-
-
-def render_surface_pair():
-    data = load_soundings()
-    for theme, p in PALETTES.items():
-        write(f"surface-conditions-{theme}.svg", render_surface(p, theme, data))
-
-
-def render_all():
-    for theme, p in PALETTES.items():
-        write(f"header-{theme}.svg", render_header(p, theme))
-        for spec in STRATA:
-            write(f"stratum-{spec['n']}-{theme}.svg", render_stratum(p, theme, spec))
-        write(f"drill-path-{theme}.svg", render_drill_path(p, theme))
-    render_surface_pair()
+    for name, content in svgs.items():
+        (ASSETS / name).write_text(content, encoding="utf-8")
+        print(f"wrote assets/{name}")
 
 
 if __name__ == "__main__":
-    if "--surface" in sys.argv:
-        render_surface_pair()
-    else:
-        render_all()
+    write_all(render_all(load_soundings()))

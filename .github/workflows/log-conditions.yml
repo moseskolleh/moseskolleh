@@ -1,4 +1,4 @@
-# Daily readings — refresh the Rhine + CO2 panel every morning.
+# Daily readings: refresh the rain banner and the Rhine and CO2 tiles every morning.
 # The updater is fail-soft: if a data source is down it exits 0 without
 # writing, the previous dated reading stands, and no commit is made.
 
@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Take the sounding
-        run: python3 scripts/update_surface_conditions.py
+        run: python3 scripts/update_readings.py
 
       - name: Commit if the reading changed
         run: |

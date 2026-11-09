@@ -1,158 +1,98 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg">
-  <img src="assets/header-light.svg" alt="Borehole log MKS-01 — Moses Kolleh Sesay, hydrogeologist turned flood-risk researcher. Site: Pavia, Italy, 45.19°N 9.16°E, on the Ticino in the Po plain. Logged across Freetown, Changsha, Bonn, Wageningen, Amsterdam and Pavia. Purpose: water, climate, data." width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+  <img src="assets/banner-light.svg" alt="Moses Kolleh Sesay — hydrogeologist turned flood-risk researcher, IUSS Pavia. Above the name, the last 30 days of rain at Monza are drawn as bars hanging from the top of the banner." width="100%">
 </picture>
 
-| | |
-|---|---|
-| **LOGGED BY** | Moses Kolleh Sesay — hydrogeologist → flood-risk researcher · Pavia, IT |
-| **RESEARCH** | [ORCID 0009-0002-9429-1672](https://orcid.org/0009-0002-9429-1672) · [PhD summary](https://moseskolleh.github.io/research.html#phd) · [Research outputs](https://moseskolleh.github.io/research.html) |
-| **CONTACT** | [moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com) · [LinkedIn](https://www.linkedin.com/in/moseskollehsesay) · [@MosesKolleh](https://x.com/MosesKolleh) · [Website](https://moseskolleh.github.io/) · [CV (PDF)](https://moseskolleh.github.io/assets/Moses_Kolleh_Sesay_CV.pdf) |
-| **KEY SAMPLES** | [promptcoach](https://github.com/moseskolleh/promptcoach) · [GAIA-Framework](https://github.com/moseskolleh/GAIA-Framework-) · [Maji](https://github.com/moseskolleh/Maji) |
-| **METHOD** | Python · SQL · R · GIS (QGIS, ArcGIS, Google Earth Engine) · TypeScript |
-| **STATUS** | PhD researcher at IUSS Pavia from November 2026 · open to research collaborations on climate and flood risk, water and ESG |
+I study how a changing climate will change extreme rainfall, and what that will mean for urban drainage and for the losses that floods cause. Since November 2026 I have been working on that question as a PhD researcher at IUSS Pavia, with the Province of Monza and Brianza in Lombardy as my study area. The banner above is redrawn every morning from the rain gauge there.
 
-> I read landscapes for a living — first with a rock hammer and a dip meter in Sierra Leone, then with pandas and Google Earth Engine in the Netherlands, and now with rainfall records and drainage networks in Northern Italy. A core log records what a place is made of, newest layer first. This is mine. **Drill down.**
+I came to this question from the ground up. I trained as a geologist in Sierra Leone and began my career siting and drilling boreholes there, where I learned that water is never abstract: it is about who can reach it, and when. Reviewing disaster-loss data at the UN Office for Disaster Risk Reduction, and then analysing river pollution across more than ten thousand sub-basins at Wageningen, taught me to ask the same question at the scale of countries and river basins. The PhD brings those threads together in one city-region.
 
-`● recording (active)` · `◍ field-validated` · `◌ prototype` · `▣ archived survey`
+[Website](https://moseskolleh.github.io/) · [Research](https://moseskolleh.github.io/research.html) · [CV (PDF)](https://moseskolleh.github.io/assets/Moses_Kolleh_Sesay_CV.pdf) · [ORCID](https://orcid.org/0009-0002-9429-1672) · [LinkedIn](https://www.linkedin.com/in/moseskollehsesay) · [X](https://x.com/MosesKolleh) · [Email](mailto:moseskollehsesay@gmail.com)
 
-## Daily readings — the Rhine, Monza's rain and the atmosphere
+## Daily readings
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/surface-conditions-dark.svg">
-  <img src="assets/surface-conditions-light.svg" alt="Surface conditions 2026-11-09: Rhine discharge at Lobith 642 m3/s, 30-day sounding; rain at Monza 64 mm over 30 days; atmospheric CO2 428.3 ppm, NOAA global trend." width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/readings-dark.svg">
+  <img src="assets/readings-light.svg" alt="Two readings with their recent trends: the discharge of the Rhine at Lobith over 30 days, and atmospheric CO2 over 12 months. The current values are given in the sentence below." width="100%">
 </picture>
 
-> *Three numbers I watch the way other people watch the weather: how much water the Rhine is carrying as it enters the Netherlands (measured at Lobith, the gauge the whole country checks first), how much rain has fallen on Monza over the last 30 days (from ARPA Lombardia's gauge in the province my PhD studies), and how much CO₂ is in the air. A script logs them here every morning — and because a hydrologist never trusts an undated reading, the panel always shows the date it was taken, and marks any value it could not refresh with the day it was last measured. [How this works →](scripts/update_surface_conditions.py)*
+<!-- readings:start -->
+Read on 9 Nov 2026: **64 mm** of rain at Monza over 30 days · the Rhine at Lobith carrying **642 m³/s** · the global CO₂ trend at **428.3 ppm**.
+<!-- readings:end -->
 
+Three numbers I watch the way other people watch the weather: the rain falling on the province I study, the water the Rhine carries as it enters the Netherlands, and the CO₂ in the air. A [short script](scripts/update_readings.py) reads them each morning from ARPA Lombardia, Rijkswaterstaat and NOAA. Every value carries the date it was actually read, so when a source is down you see an older date rather than a number that only looks fresh.
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-1-dark.svg">
-  <img src="assets/stratum-1-light.svg" alt="Stratum I divider — rain-streaked topsoil, depth 0.0 to 1.0 metres." width="100%">
-</picture>
+## Research
 
-## Now — TOPSOIL · 2026–29 · urban flood risk
+**Climate-driven urban flood risk** · PhD in Sustainable Development and Climate Change, IUSS Pavia · 2026–2029
 
-The newest layer, freshly deposited. From November 2026 I am a doctoral researcher in Pavia, working on one question:
+The study area is the Province of Monza and Brianza, a highly urbanised part of Lombardy exposed to pluvial flooding. I am enrolled in Curriculum Beta, which looks at the human side of climate change: socio-economic impacts, policies and institutions.
 
-> **How will a changing climate alter the odds of extreme rainfall, and what will that mean for urban drainage and for the losses floods cause?**
+The work has only just begun, so I have no results, no model and no data to show yet. The [research summary](https://moseskolleh.github.io/research.html#phd) sets out the project and is explicit about what it does not claim.
 
-- ● **PhD Researcher — Climate-Driven Urban Flood Risk** · Scuola Universitaria Superiore IUSS Pavia · `Nov 2026 – present`
+Before the PhD, my MSc thesis at Wageningen studied [coastal water pollution](https://moseskolleh.github.io/case-studies.html#coastal): river export of multiple pollutants across 10,226 sub-basins worldwide with the MARINA-Multi model, the socio-economic drivers behind it, and scenario storylines for Africa's coastal waters under climate change. The thesis is available on request.
 
-  PhD in Sustainable Development and Climate Change, Curriculum Beta (human society: socio-economic impacts, policies and institutions). The study area is the Province of Monza and Brianza, a highly urbanised part of Lombardy exposed to pluvial flooding. `SAMPLE PV-26 · urban flood risk · climate projections · socio-economic impacts · SDG 6 · 9 · 11`
+## Selected work
 
-  Nothing to report yet: no results, no model and no data. [The full summary, and what it does not claim →](https://moseskolleh.github.io/research.html#phd)
+**Making the footprint of AI visible.** In 2025–26 I researched sustainable AI at the Digital Society School in Amsterdam, and built tools that show AI's water and energy costs before you spend them. [Case study](https://moseskolleh.github.io/case-studies.html#sustainable-ai)
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-2-dark.svg">
-  <img src="assets/stratum-2-light.svg" alt="Stratum II divider — stippled subsoil, depth 1.0 to 2.0 metres." width="100%">
-</picture>
+- **[promptcoach](https://github.com/moseskolleh/promptcoach)** shows the energy, water and carbon cost of an AI prompt in units you can feel, such as "2 teaspoons of water", before you send it, and then coaches you to shrink it. A Chrome extension with a tested core engine; every formula and source is cited in its [methodology](https://github.com/moseskolleh/promptcoach/blob/main/docs/METHODOLOGY.md).
+- **[GAIA-Framework](https://github.com/moseskolleh/GAIA-Framework-)** grades 18+ AI models from A+ to F on energy, water and carbon, so that teams can choose greener deployments.
+- **[SustainableAIPrototypes](https://github.com/moseskolleh/SustainableAIPrototypes)** holds five behaviour-change prototypes built with a Dutch government partner, published together with the partner's feedback and the research behind them.
 
-## Sustainable AI — SUBSOIL · 2025–26 · still forming
+**Water, where I started.**
 
-Still forming beneath the new topsoil. I build tools that make AI's water and energy costs visible before you spend them. [Case study →](https://moseskolleh.github.io/case-studies.html#sustainable-ai)
+- **[Maji](https://github.com/moseskolleh/Maji)** is an early-stage platform for Freetown's informal water economy: supply alerts from paid Water Scouts, a vendor marketplace on mobile money and a live map of water points. It is built offline-first, because the network fails exactly when the taps do. *Maji* is Swahili for water.
+- **[climatematchProjects](https://github.com/moseskolleh/climatematchProjects)** is a research design of five proposals for African climate resilience, covering drought early warning, hybrid physics-ML flood prediction and coastal compound risk.
 
-- ● **[promptcoach](https://github.com/moseskolleh/promptcoach)** — Shows an AI prompt's energy, water, and carbon cost in units you can feel — *"2 teaspoons of water"* — before you hit send, then coaches you to shrink it. Every formula and source is cited in its [methodology](https://github.com/moseskolleh/promptcoach/blob/main/docs/METHODOLOGY.md). `SAMPLE PC-77 · Chrome MV3 · tested core engine · 19-model catalog`
+**Statistics careful enough to say no.**
 
-- ● **[GAIA-Framework](https://github.com/moseskolleh/GAIA-Framework-)** — A dashboard that grades 18+ AI models from A+ to F on energy, water, and carbon so teams can choose greener deployments. `SAMPLE GA-60 · vanilla JS · zero dependencies · CSV export`
+- **[A/B Testing at GloBox](https://github.com/moseskolleh/A-B-Testing-at-Globox)** runs from SQL through Python statistics to a Tableau dashboard, and ends in a recommendation *not* to ship a feature that lifted conversion but not revenue.
 
-- ◍ **[SustainableAIPrototypes](https://github.com/moseskolleh/SustainableAIPrototypes)** — Five behaviour-change prototypes, built at the Digital Society School with a Dutch government partner, that turn invisible AI carbon into feedback people act on. The repo carries the partner feedback and research alongside the code. `SAMPLE SP-33 · partner-validated fieldwork`
+## Path
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-3-dark.svg">
-  <img src="assets/stratum-3-light.svg" alt="Stratum III divider — gravel bed of transported, well-rounded clasts, depth 2.0 to 3.0 metres." width="100%">
-</picture>
+- **2026–29 · Pavia.** PhD in Sustainable Development and Climate Change, IUSS Pavia.
+- **2025–26 · Amsterdam.** Researcher in sustainable AI, Digital Society School.
+- **2021–24 · Wageningen.** MSc Environmental Sciences, with an internship at UNDRR in Bonn.
+- **2019–21 · Changsha.** MSc Industrial Engineering, Hunan University.
+- **2013–19 · Freetown.** BSc Geology with First Class Honours, then a year supervising borehole drilling across Sierra Leone.
 
-## Experience — GRAVEL · transported, well-rounded
+<details>
+<summary><b>Experience and education in full</b></summary>
 
-Material carried in from elsewhere and worn smooth by use: from drilling crews in Sierra Leone to disaster-loss data at the UN, the groundwork the PhD now stands on.
+<br>
 
-- ▣ **Researcher — Sustainable Artificial Intelligence** · Digital Society School, Amsterdam University of Applied Sciences · `Sept 2025 – Feb 2026`
+**Experience**
 
-  Researched sustainable AI in a team, with a Dutch government partner; the prototypes above came out of it.
+- **PhD Researcher, Climate-Driven Urban Flood Risk** · Scuola Universitaria Superiore IUSS Pavia · Nov 2026 – present
+- **Researcher, Sustainable Artificial Intelligence** · Digital Society School, Amsterdam University of Applied Sciences · Sept 2025 – Feb 2026<br>Researched sustainable AI in a team, with a Dutch government partner. The prototypes above came out of it.
+- **Cohort 7 Member, Sustainability Consulting Accelerator** · OnePointFive · Mar – Apr 2025<br>An intensive eight-week programme on Net Zero strategy and decarbonisation: SBTi, CDP and the GHG Protocol, materiality assessments, Scope 1–3 accounting and transition planning.
+- **Climate Change Adaptation Intern** · UN Office for Disaster Risk Reduction (UNDRR), Bonn · Jun – Oct 2023<br>Reviewed disaster-loss data for Caribbean countries feeding the Sendai Framework Monitor, documented 54 global hazard information systems for the organisation's catalogue, and wrote a disaster and climate-risk factsheet for Trinidad and Tobago. [Case study](https://moseskolleh.github.io/case-studies.html#un-disaster)
+- **Field Operations Manager** · Team & Team International, Freetown · May – Sept 2019<br>Led the completion of 14 solar-powered boreholes with storage tanks across Sierra Leone, sited by electrical-resistivity survey. 70% of those drilled struck water. [How the sites were chosen](https://moseskolleh.github.io/case-studies.html#groundwater)
+- **Operations Supervisor** · Sierra Drilling and Water Supply Enterprise, Freetown · Sept 2018 – Apr 2019<br>Managed a drilling team of 23 that constructed 50 boreholes and rehabilitated 100 hand-dug wells.
 
-- ▣ **Cohort 7 Member — Sustainability Consulting Accelerator** · OnePointFive · `Mar – Apr 2025`
-
-  Intensive eight-week programme on Net Zero strategy and decarbonisation: SBTi, CDP and the GHG Protocol; materiality assessments, Scope 1–3 accounting and transition planning.
-
-- ▣ **Climate Change Adaptation Intern** · UN Office for Disaster Risk Reduction (UNDRR), Bonn · `Jun – Oct 2023`
-
-  Reviewed disaster-loss data for Caribbean countries feeding the Sendai Framework Monitor, documented 54 global hazard information systems for the organisation's catalogue, and wrote a disaster and climate-risk factsheet for Trinidad and Tobago. [Case study →](https://moseskolleh.github.io/case-studies.html#un-disaster)
-
-- ▣ **Field Operations Manager** · Team & Team International, Freetown · `May – Sept 2019`
-
-  Led completion of 14 solar-powered boreholes with storage tanks across Sierra Leone, sited by electrical-resistivity survey: 70% of those drilled struck water. [How the sites were chosen →](https://moseskolleh.github.io/case-studies.html#groundwater)
-
-- ▣ **Operations Supervisor** · Sierra Drilling and Water Supply Enterprise, Freetown · `Sept 2018 – Apr 2019`
-
-  Managed a drilling team of 23 that constructed 50 boreholes and rehabilitated 100 hand-dug wells.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-4-dark.svg">
-  <img src="assets/stratum-4-light.svg" alt="Stratum IV divider — wavy alluvium bedding, depth 3.0 to 4.5 metres." width="100%">
-</picture>
-
-## Water & West Africa — ALLUVIUM · water-lain
-
-Everything I build eventually finds its way back to water. *Maji* is Swahili for it.
-
-- ◌ **[Maji](https://github.com/moseskolleh/Maji)** — A mobile-first, offline-capable platform for Freetown's informal water economy: crowdsourced supply alerts from paid Water Scouts, a vendor marketplace on Orange Money and Africell mobile money, and a live PostGIS water-point map. Offline-first, because the network fails exactly when the taps do. The problem I grew up next to, built with the stack I have now. `SAMPLE MJ-07 · TypeScript · Fastify + PostGIS + Prisma · React Native · early-stage`
-
-- ▣ **[Coastal water pollution dynamics](https://moseskolleh.github.io/case-studies.html#coastal)** — My MSc thesis at Wageningen: river export of multiple pollutants across 10,226 sub-basins worldwide, analysed with the MARINA-Multi model of Wageningen's Water Systems & Global Change group; the socioeconomic drivers identified statistically; and scenario storylines for Africa's coastal waters under climate change. `SAMPLE WU-24 · thesis on request`
-
-- ◌ **[climatematchProjects](https://github.com/moseskolleh/climatematchProjects)** — A five-proposal research program design (€2.6M scope) for African climate resilience: drought early warning, hybrid physics-ML flood prediction, and coastal compound risk. `SAMPLE CM-14 · research design`
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-5-dark.svg">
-  <img src="assets/stratum-5-light.svg" alt="Stratum V divider — tightly laminated strata, depth 4.5 to 6.0 metres." width="100%">
-</picture>
-
-## Data analytics — CONSOLIDATED STRATA · 2023–24
-
-The layer everything above stands on: statistics done carefully enough to say no.
-
-- ▣ **[A/B Testing at GloBox](https://github.com/moseskolleh/A-B-Testing-at-Globox)** — SQL → Python statistics → Tableau, ending in the rarest analyst deliverable: a well-argued recommendation *not* to ship a feature that lifted conversion but not revenue. Novelty effects said wait. `SAMPLE GB-38 · full report + Tableau dashboard`
-
-- Google Advanced Data Analytics (Google · Coursera, Jan 2024) — regression and machine learning on real business cases (Automatidata, TikTok, Waze). Data Analytics Training (Masterschool, Dec 2023) — SQL, Python, Excel and Tableau on real-world business cases.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-6-dark.svg">
-  <img src="assets/stratum-6-light.svg" alt="Stratum VI divider — porous aquifer texture with water-table marker, depth 6 to 12 metres." width="100%">
-</picture>
-
-## Education — AQUIFER · recharged on three continents
-
-An aquifer stores what the surface forgets. Mine was recharged in Freetown, Changsha and Wageningen — and, from November 2026, Pavia.
+**Education**
 
 | Years | Degree | Institution |
 |---|---|---|
 | 2026–2029 | PhD in Sustainable Development and Climate Change *(in progress)* | Scuola Universitaria Superiore IUSS Pavia, IT |
-| 2021–2024 | MSc Environmental Sciences — Human-Environment Interaction · Water Systems & Global Change | Wageningen University & Research, NL |
+| 2021–2024 | MSc Environmental Sciences · Human-Environment Interaction · Water Systems & Global Change | Wageningen University & Research, NL |
 | 2019–2021 | MSc Industrial Engineering | Hunan University, CN |
 | 2013–2017 | BSc Honours Geology, First Class Honours | University of Sierra Leone, SL |
 
-Also certified: ESG Specialist Program (Corporate Finance Institute, Sep 2024) · Synergizing DRR & Climate Change Adaptation (UN System Staff College, 2023).
+**Training**
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/drill-path-dark.svg">
-  <img src="assets/drill-path-light.svg" alt="Recharge path, source to delta and back as rain: from the Bintumani massif in Sierra Leone at 1,945 metres, through Changsha, China, down to Amsterdam at sea level — zero metres on the NAP datum that carries the city's name — then the water cycle closes and falls again as rain on Pavia, Italy, 77 metres up on the Ticino." width="100%">
-</picture>
+- ESG Specialist Program · Corporate Finance Institute · Sep 2024
+- Google Advanced Data Analytics · Google, Coursera · Jan 2024
+- Data Analytics Training · Masterschool · Dec 2023
+- Synergizing DRR & Climate Change Adaptation · UN System Staff College · 2023
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/stratum-7-dark.svg">
-  <img src="assets/stratum-7-light.svg" alt="Stratum VII divider — crystalline basement crosshatch, depth 12 metres and beyond. End of hole." width="100%">
-</picture>
+**Tools**
 
-## Bedrock — SIERRA LEONE
+Python · SQL · R · GIS (QGIS, ArcGIS, Google Earth Engine) · TypeScript
 
-> Basement rock: Freetown, Sierra Leone — where I first learned that water is never abstract. It's about who can reach it, and when. Everything above sits on this. If you're working on climate, water, flood risk, or the places data usually skips, my inbox is open.
+</details>
 
----
+## Get in touch
 
-<div align="center">
-
-`END OF LOG · TOTAL DEPTH: ONE CAREER, STILL DRILLING`
-
-[moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com) · [ORCID](https://orcid.org/0009-0002-9429-1672) · [LinkedIn](https://www.linkedin.com/in/moseskollehsesay) · [Website](https://moseskolleh.github.io/)
-
-</div>
+I am open to research collaborations on climate and flood risk, water and ESG. If you are working on any of these, or on the places that data usually skips, I would be glad to hear from you: [moseskollehsesay@gmail.com](mailto:moseskollehsesay@gmail.com).
