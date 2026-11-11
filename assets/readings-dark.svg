@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 128" width="840" height="128" role="img" aria-label="Rhine discharge at Lobith 627 cubic metres per second, read 10 Nov 2026, with its 30-day trend. Atmospheric CO2 428.3 parts per million, read 10 Nov 2026, with its 12-month trend." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
-<title>Rhine discharge at Lobith 627 cubic metres per second, read 10 Nov 2026, with its 30-day trend. Atmospheric CO2 428.3 parts per million, read 10 Nov 2026, with its 12-month trend.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 128" width="840" height="128" role="img" aria-label="Rhine discharge at Lobith 620 cubic metres per second, read 11 Nov 2026, with its 30-day trend. Atmospheric CO2 428.3 parts per million, read 11 Nov 2026, with its 12-month trend." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
+<title>Rhine discharge at Lobith 620 cubic metres per second, read 11 Nov 2026, with its 30-day trend. Atmospheric CO2 428.3 parts per million, read 11 Nov 2026, with its 12-month trend.</title>
 <line x1="0" y1="0.5" x2="396" y2="0.5" stroke="#7cfc00" stroke-opacity="0.28" stroke-width="1"/>
 <text x="0" y="27" font-size="13" fill="#b0b0b0" font-weight="400" text-anchor="start">Rhine discharge at Lobith</text>
-<text x="0" y="70" font-size="36" fill="#ffffff" font-weight="600" text-anchor="start" letter-spacing="-0.4">627<tspan font-size="15" font-weight="400" fill="#b0b0b0" dx="6">m³/s</tspan></text>
+<text x="0" y="70" font-size="36" fill="#ffffff" font-weight="600" text-anchor="start" letter-spacing="-0.4">620<tspan font-size="15" font-weight="400" fill="#b0b0b0" dx="6">m³/s</tspan></text>
 <text x="0" y="96" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="start">30 days · Rijkswaterstaat</text>
-<text x="0" y="114" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="start">read 10 Nov 2026</text>
-<polyline points="250.0,106.5 254.8,108.2 259.5,109.0 264.3,107.3 269.0,108.0 273.8,108.8 278.6,107.3 283.3,109.6 288.1,111.8 292.8,112.0 297.6,110.3 302.3,108.0 307.1,101.3 311.9,84.7 316.6,64.8 321.4,51.8 326.1,36.0 330.9,41.5 335.7,54.6 340.4,63.3 345.2,73.1 349.9,81.9 354.7,90.2 359.4,96.8 364.2,101.1 369.0,102.6 373.7,102.8 378.5,104.1 383.2,105.0 388.0,107.7" fill="none" stroke="#7cfc00" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-<circle cx="388.0" cy="107.7" r="4.5" fill="#7cfc00" stroke="#0d1117" stroke-width="2"/>
-<text x="326.1" y="27.0" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="middle">1,008</text>
+<text x="0" y="114" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="start">read 11 Nov 2026</text>
+<polyline points="250.0,108.2 254.8,109.0 259.5,107.3 264.3,108.0 269.0,108.8 273.8,107.3 278.6,109.6 283.3,111.8 288.1,112.0 292.8,110.3 297.6,108.0 302.3,101.3 307.1,84.7 311.9,64.8 316.6,51.8 321.4,36.0 326.1,41.5 330.9,54.6 335.7,63.3 340.4,73.1 345.2,81.9 349.9,90.2 354.7,96.8 359.4,101.1 364.2,102.6 369.0,102.8 373.7,104.1 378.5,105.0 383.2,108.0 388.0,109.0" fill="none" stroke="#7cfc00" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="388.0" cy="109.0" r="4.5" fill="#7cfc00" stroke="#0d1117" stroke-width="2"/>
+<text x="321.4" y="27.0" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="middle">1,008</text>
 <line x1="444" y1="0.5" x2="840" y2="0.5" stroke="#7cfc00" stroke-opacity="0.28" stroke-width="1"/>
 <text x="444" y="27" font-size="13" fill="#b0b0b0" font-weight="400" text-anchor="start">Atmospheric CO₂, global trend</text>
 <text x="444" y="70" font-size="36" fill="#ffffff" font-weight="600" text-anchor="start" letter-spacing="-0.4">428.3<tspan font-size="15" font-weight="400" fill="#b0b0b0" dx="6">ppm</tspan></text>
 <text x="444" y="96" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="start">Line: 12 monthly means · NOAA</text>
-<text x="444" y="114" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="start">read 10 Nov 2026</text>
+<text x="444" y="114" font-size="12" fill="#b0b0b0" font-weight="400" text-anchor="start">read 11 Nov 2026</text>
 <polyline points="694.0,112.0 706.5,109.4 719.1,88.5 731.6,66.0 744.2,53.9 756.7,44.6 769.3,39.0 781.8,38.4 794.4,36.0 806.9,36.8 819.5,47.6 832.0,69.7" fill="none" stroke="#f2b705" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
 <circle cx="832.0" cy="69.7" r="4.5" fill="#f2b705" stroke="#0d1117" stroke-width="2"/>
 </svg>
