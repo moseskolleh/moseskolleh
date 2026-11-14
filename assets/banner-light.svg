@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 232" width="840" height="232" role="img" aria-label="Moses Kolleh Sesay, hydrogeologist turned flood-risk researcher, IUSS Pavia. Above the name, the last 30 days of rain at Monza drawn as bars hanging from the top: 102 mm in total, read 13 Nov 2026." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
-<title>Moses Kolleh Sesay, hydrogeologist turned flood-risk researcher, IUSS Pavia. Above the name, the last 30 days of rain at Monza drawn as bars hanging from the top: 102 mm in total, read 13 Nov 2026.</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 232" width="840" height="232" role="img" aria-label="Moses Kolleh Sesay, hydrogeologist turned flood-risk researcher, IUSS Pavia. Above the name, the last 30 days of rain at Monza drawn as bars hanging from the top: 102 mm in total, read 14 Nov 2026." font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif">
+<title>Moses Kolleh Sesay, hydrogeologist turned flood-risk researcher, IUSS Pavia. Above the name, the last 30 days of rain at Monza drawn as bars hanging from the top: 102 mm in total, read 14 Nov 2026.</title>
 <style>@media (prefers-reduced-motion: no-preference){.b{transform-box:fill-box;transform-origin:50% 0;animation:fall .8s cubic-bezier(.2,.7,.2,1) both}@keyframes fall{from{transform:scaleY(0)}}}</style>
 <text x="0" y="17" font-size="13" fill="#54584f" font-weight="400" text-anchor="start">Rain over Monza, last 30 days</text>
-<text x="840" y="17" font-size="13" fill="#54584f" font-weight="400" text-anchor="end"><tspan fill="#161914" font-weight="600">102 mm</tspan> · read 13 Nov 2026</text>
+<text x="840" y="17" font-size="13" fill="#54584f" font-weight="400" text-anchor="end"><tspan fill="#161914" font-weight="600">102 mm</tspan> · read 14 Nov 2026</text>
 <line x1="0" y1="29.5" x2="840" y2="29.5" stroke="#228b22" stroke-opacity="0.3" stroke-width="1"/>
 <line x1="14.0" y1="30" x2="14.0" y2="34" stroke="#228b22" stroke-opacity="0.3" stroke-width="1"/>
 <line x1="42.0" y1="30" x2="42.0" y2="34" stroke="#228b22" stroke-opacity="0.3" stroke-width="1"/>
@@ -34,24 +34,23 @@
 <line x1="770.0" y1="30" x2="770.0" y2="34" stroke="#228b22" stroke-opacity="0.3" stroke-width="1"/>
 <line x1="798.0" y1="30" x2="798.0" y2="34" stroke="#228b22" stroke-opacity="0.3" stroke-width="1"/>
 <line x1="826.0" y1="30" x2="826.0" y2="34" stroke="#228b22" stroke-opacity="0.3" stroke-width="1"/>
-<path class="b" style="animation-delay:0ms" d="M8.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:66ms" d="M92.0 30 h12.0 v1.9 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:88ms" d="M120.0 30 h12.0 v0.0 a2.1 2.1 0 0 1 -2.1 2.1 h-7.8 a2.1 2.1 0 0 1 -2.1 -2.1 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:110ms" d="M148.0 30 h12.0 v33.8 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:132ms" d="M176.0 30 h12.0 v57.8 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:176ms" d="M232.0 30 h12.0 v2.3 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:198ms" d="M260.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:242ms" d="M316.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:308ms" d="M400.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:352ms" d="M456.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:484ms" d="M624.0 30 h12.0 v8.2 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:506ms" d="M652.0 30 h12.0 v2.7 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:44ms" d="M64.0 30 h12.0 v1.9 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:66ms" d="M92.0 30 h12.0 v0.0 a2.1 2.1 0 0 1 -2.1 2.1 h-7.8 a2.1 2.1 0 0 1 -2.1 -2.1 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:88ms" d="M120.0 30 h12.0 v33.8 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:110ms" d="M148.0 30 h12.0 v57.8 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:154ms" d="M204.0 30 h12.0 v2.3 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:176ms" d="M232.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:220ms" d="M288.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:286ms" d="M372.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:330ms" d="M428.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:462ms" d="M596.0 30 h12.0 v8.2 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:484ms" d="M624.0 30 h12.0 v2.7 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:528ms" d="M680.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
 <path class="b" style="animation-delay:550ms" d="M708.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:572ms" d="M736.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:594ms" d="M764.0 30 h12.0 v0.0 a3.8 3.8 0 0 1 -3.8 3.8 h-4.4 a3.8 3.8 0 0 1 -3.8 -3.8 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:616ms" d="M792.0 30 h12.0 v70.0 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
-<path class="b" style="animation-delay:638ms" d="M820.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
-<text x="804.0" y="121.0" font-size="12" fill="#54584f" font-weight="400" text-anchor="end">35 mm on 12 Nov</text>
+<path class="b" style="animation-delay:572ms" d="M736.0 30 h12.0 v0.0 a3.8 3.8 0 0 1 -3.8 3.8 h-4.4 a3.8 3.8 0 0 1 -3.8 -3.8 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:594ms" d="M764.0 30 h12.0 v70.0 a4.0 4.0 0 0 1 -4.0 4.0 h-4.0 a4.0 4.0 0 0 1 -4.0 -4.0 Z" fill="#1a7a1a"/>
+<path class="b" style="animation-delay:616ms" d="M792.0 30 h12.0 v0.0 a1.5 1.5 0 0 1 -1.5 1.5 h-9.0 a1.5 1.5 0 0 1 -1.5 -1.5 Z" fill="#1a7a1a"/>
+<text x="770.0" y="121.0" font-size="12" fill="#54584f" font-weight="400" text-anchor="middle">35 mm on 12 Nov</text>
 <text x="-2" y="182" font-size="46" fill="#161914" font-weight="600" text-anchor="start" letter-spacing="-0.6">Moses Kolleh Sesay</text>
 <text x="0" y="214" font-size="17" fill="#54584f" font-weight="400" text-anchor="start">Hydrogeologist turned flood-risk researcher · IUSS Pavia</text>
 </svg>
