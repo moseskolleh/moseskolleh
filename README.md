@@ -42,7 +42,6 @@ Before the PhD, my MSc thesis at Wageningen studied [coastal water pollution](ht
 
 **Water, where I started.**
 
-- **[Maji](https://github.com/moseskolleh/Maji)** is an early-stage platform for Freetown's informal water economy: supply alerts from paid Water Scouts, a vendor marketplace on mobile money and a live map of water points. It is built offline-first, because the network fails exactly when the taps do. *Maji* is Swahili for water.
 - **[climatematchProjects](https://github.com/moseskolleh/climatematchProjects)** is a research design of five proposals for African climate resilience, covering drought early warning, hybrid physics-ML flood prediction and coastal compound risk.
 
 **Statistics careful enough to say no.**
