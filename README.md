@@ -17,7 +17,7 @@ I came to this question from the ground up. I trained as a geologist in Sierra L
 </picture>
 
 <!-- readings:start -->
-Read on 27 Nov 2026: **116 mm** of rain at Monza over 30 days · the Rhine at Lobith carrying **2,049 m³/s** · the global CO₂ trend at **428.4 ppm**.
+Read on 28 Nov 2026: **116 mm** of rain at Monza over 30 days · the Rhine at Lobith carrying **1,964 m³/s** · the global CO₂ trend at **428.4 ppm**.
 <!-- readings:end -->
 
 Three numbers I watch the way other people watch the weather: the rain falling on the province I study, the water the Rhine carries as it enters the Netherlands, and the CO₂ in the air. A [short script](scripts/update_readings.py) reads them each morning from ARPA Lombardia, Rijkswaterstaat and NOAA. Every value carries the date it was actually read, so when a source is down you see an older date rather than a number that only looks fresh.
